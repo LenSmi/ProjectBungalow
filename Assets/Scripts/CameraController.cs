@@ -11,13 +11,12 @@ public class CameraController : MonoBehaviour
     public float forwardOffset;
     private void FixedUpdate()
     {
-        //Debug.Log(PlayerMovement_v1.isMoving); JUHO silence
         LerpCamera();
     }
 
     void LerpCamera()
     {
-        //Debug.Log("CAM LERP");
+
         Vector3 currentPos = transform.position;
         Vector3 wantedPos = playerTarget.position;
         wantedPos.y += offset.y;
@@ -25,7 +24,6 @@ public class CameraController : MonoBehaviour
         wantedPos.z += offset.z;
         wantedPos += playerTarget.right * forwardOffset;
         transform.position = Vector3.Lerp(currentPos, wantedPos, lerpTime * Time.deltaTime);
-
 
     }
 }

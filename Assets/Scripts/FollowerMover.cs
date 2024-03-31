@@ -10,12 +10,6 @@ public class FollowerMover : MonoBehaviour, IMover
     public float _speed;
     public float _rotSpeed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
