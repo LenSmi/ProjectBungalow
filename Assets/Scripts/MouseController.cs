@@ -16,6 +16,11 @@ public class MouseController : MonoBehaviour
     [HideInInspector]
     public Ray ray;
 
+    public string lastLayerhit;
+
+    public float ResourceDamageDuration = 1f;
+    public float BaseResourceDamageAmount = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +40,36 @@ public class MouseController : MonoBehaviour
         Debug.DrawRay(transform.position, mousePosition - transform.position, Color.green);
 
         if (Input.GetMouseButtonDown(0))
-        {    
-            ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-          
-            if(Physics.Raycast(ray, out raycastHit, Mathf.Infinity,layerMask))
+        {
+            HandleClick();
+        }
+    }
+   
+    public void HandleClick()
+    {
+        ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, layerMask))
+        {
+            GameObject hitObject = raycastHit.collider.gameObject;
+            
+            switch (LayerMask.LayerToName(hitObject.layer))
             {
-                _indicatorObject.transform.position = raycastHit.point;
+                case "Ground":
+                    _indicatorObject.transform.position = raycastHit.point;
+                    break;
+                case "Resource":
+
+                    HealthBarBehaviour health = hitObject.GetComponentInChildren<HealthBarBehaviour>();
+
+                    StartCoroutine(
+                        health.LoseHealth(ResourceDamageDuration, BaseResourceDamageAmount)
+                        );
+
+                    break;
             }
+
+            lastLayerhit = LayerMask.LayerToName(hitObject.layer);
         }
     }
 }

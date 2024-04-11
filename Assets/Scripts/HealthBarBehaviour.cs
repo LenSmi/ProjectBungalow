@@ -8,16 +8,16 @@ public class HealthBarBehaviour : MonoBehaviour
 {
 
     public Image fillImage;
-    public float healthFillAmont = 1f;
+    public float maxHealthFillAmount = 100f;
     [HideInInspector]
     public float currentHealthFillAmount;
 
     private Camera mainCamera;
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
-        currentHealthFillAmount = healthFillAmont;
+        currentHealthFillAmount = maxHealthFillAmount;
         mainCamera = Camera.main;
     }
 
@@ -27,16 +27,21 @@ public class HealthBarBehaviour : MonoBehaviour
                          mainCamera.transform.rotation * Vector3.up);
     }
 
-    public void LoseHealth(float animDuration, float targetAmount)
+    public IEnumerator LoseHealth(float animDuration, float lossAmount)
     {
         float elapsedTime = 0f;
 
+        currentHealthFillAmount -= lossAmount;
+
+        var finalFillAmount = currentHealthFillAmount / 100;
+
         while (animDuration >= elapsedTime)
         {
-            fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, targetAmount, elapsedTime / animDuration);
+            fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, finalFillAmount, elapsedTime / animDuration);
             elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
-        fillImage.fillAmount = targetAmount;
+        fillImage.fillAmount = Mathf.Clamp(finalFillAmount, 0.0f, 1);
     }
 }
