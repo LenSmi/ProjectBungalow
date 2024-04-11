@@ -146,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec07e350f544d8a4da697acbbf619e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointIndicator: {fileID: 0}
+  _pointIndicator: {fileID: 4188701029795423035, guid: 31f65bc436c541f46803d977d1a30b08, type: 3}
   layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
+  lastLayerhit: 

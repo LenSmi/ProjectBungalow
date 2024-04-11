@@ -20,5 +20,10 @@ public class GameConstants
         TRENCH
     }
 
+    public static readonly List<string> GameLayers = new List<string>
+       {
+            "Ground", "Resource"
+       };
+
 
 }
