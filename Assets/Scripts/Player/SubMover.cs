@@ -5,32 +5,82 @@ using UnityEngine;
 public class SubMover : MonoBehaviour
 {
     public MouseController mouseController;
+    public Transform subTransform;
     public float rotSpeed;
     public float movementSpeed;
-    public float distanceToStop;
+    public float stopDistance;
+    public float indicatorStopDistance;
+    public float resourceStopDistance;
+
+    public Transform tracker;
+
+    private const string horizontalInput = "Horizontal";
+    private const string verticalInput = "Vertical";
+
+    private Vector3 angleX;
+    private Vector3 angleZ;
+
+    public float angleOffsetX;
+    public float angleOffsetZ;
+
+    private float horizontal;
+    private float vertical;
+
+
+    public Vector3 input;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (CheckInput())
+        {
+            SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
+        }
+
+        if (SubStateManager.currentSubState == GameConstants.PlayerStates.MOVING){
+
             Move();
+        }
+
     }
 
     public void Move()
     {
-        // Move to position
-        Vector3 targetPos = new Vector3(mouseController.raycastHit.point.x, transform.position.y, mouseController.raycastHit.point.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, movementSpeed * Time.fixedDeltaTime);
 
-        //Rotate to
+        horizontal = Input.GetAxis(horizontalInput);
+        vertical = Input.GetAxis(verticalInput);
 
-        if (Vector3.Distance(transform.position, mouseController.raycastHit.point) > distanceToStop)
-        {
-            Vector3 relativePosition = mouseController.raycastHit.point - transform.position;
-            Quaternion targerRot = Quaternion.LookRotation(relativePosition, transform.up);
-            targerRot.x = 0;
-            targerRot.z = 0;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targerRot, rotSpeed * Time.fixedDeltaTime);
-        }
-       
+        //Current Position
+        Vector3 position = transform.position;
+
+        //Input and movement Vector
+        CalculateAngleOffset();
+        input = (horizontal * angleX + vertical * angleZ).normalized;
+        Vector3 movement = input * movementSpeed * Time.deltaTime;
+
+        //Desired Position
+        Vector3 newPos = position + movement;
+        Vector3 targetPos = new Vector3(newPos.x, transform.position.y, newPos.z);
+
+        MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed);
+
+    }
+
+    private void CalculateAngleOffset()
+    {
+        //Normalize angle to have isometric view make sense
+        angleZ.x = Mathf.Sin(angleOffsetZ);
+        angleZ.z = Mathf.Cos(angleOffsetZ);
+        angleZ.Normalize();
+
+        angleX.x = Mathf.Sin(angleOffsetX);
+        angleX.z = Mathf.Cos(angleOffsetX);
+        angleX.Normalize();
+    }
+
+    public bool CheckInput()
+    {
+
+        return true;
     }
 }

@@ -14,13 +14,13 @@ public class FollowerMover : MonoBehaviour, IMover
     void FixedUpdate()
     {
         //TODO: Implement warp if pal gets lost.
-        Move();
+        Move(_toFollowTransform.position);
     }
 
 
-    public void Move()
+    public void Move(Vector3 point)
     {
-        Vector3 newPos = _toFollowTransform.position - (_toFollowTransform.forward * _allowedDistance) + (_toFollowTransform.up * _targetDistance);
+        Vector3 newPos = point - (_toFollowTransform.forward * _allowedDistance) + (_toFollowTransform.up * _targetDistance);
         Vector3 targetPos = new Vector3(newPos.x, transform.position.y, newPos.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, _speed * Time.fixedDeltaTime);
        

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IMover
 {
-    void Move();
+    void Move(Vector3 point);
 }

@@ -14,6 +14,22 @@ public class GameConstants
         GAMEOVER
     }
 
+    public enum PlayerStates
+    {
+        IDLE,
+        MOVING,
+        MINNING,
+        DASHING
+
+    }
+
+    public enum ResourceType
+    {
+        PLASTICS,
+        JUNK,
+        BIOMASS
+    }
+
     public enum WorldState
     {
         OVERWORLD,

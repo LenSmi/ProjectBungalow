@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour, IMover
+public class PlayerMover : MonoBehaviour
 {
     public MouseController _mouseController;
+    public Transform playerTransform;
     public float _distanceToStop;
     public float rotSpeed;
     public float movementSpeed;
@@ -17,25 +18,10 @@ public class PlayerMover : MonoBehaviour, IMover
     // Update is called once per frame
     void FixedUpdate()
     {
-       
-        Move();
-
-    }
-
-    public void Move()
-    {
-        // Move to position
-        Vector3 targetPos = new Vector3(_mouseController.raycastHit.point.x, transform.position.y, _mouseController.raycastHit.point.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, movementSpeed * Time.fixedDeltaTime);
-
-        //Rotate to
-        if (Vector3.Distance(transform.position, _mouseController.raycastHit.point) > _distanceToStop)
+        if(SubStateManager.currentSubState == GameConstants.PlayerStates.MOVING)
         {
-            Vector3 relativePosition = _mouseController.raycastHit.point - transform.position;
-            Quaternion targetRot = Quaternion.LookRotation(relativePosition, transform.up);
-            targetRot.x = 0;
-            targetRot.z = 0;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotSpeed * Time.fixedDeltaTime);
+         
         }
+
     }
 }
