@@ -54,7 +54,7 @@ public class CargoUIManager : MonoBehaviour
             yield return null;
         }
 
-        fillImage.fillAmount = finalFillAmount;
+        fillImage.fillAmount = Mathf.Clamp(finalFillAmount,0,1f);
 
     }
 }

@@ -35,17 +35,18 @@ public class Cargo : MonoBehaviour
         if (!currentCargoInventory.ContainsKey(type.ToString()))
         {
             currentCargoInventory.Add(type.ToString(), addedQuantity);
+            currentCargo += addedQuantity;
         }
-        else
+        else if(currentCargoInventory.ContainsKey(type.ToString()))
         {
             currentCargoInventory[type.ToString()] += addedQuantity;
+            var cargoCheck = currentCargo < maxCargo ? currentCargo += addedQuantity : currentCargo += 0;
+            currentCargo = cargoCheck;
         }
 
-        var cargoCheck = currentCargo <= maxCargo ? currentCargo += addedQuantity : maxCargo;
+
 
         previouslyAddedAmount = addedQuantity;
-        currentCargo = cargoCheck;
-
 
         AddItemsToCargo?.Invoke();
     }
