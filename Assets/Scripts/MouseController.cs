@@ -10,6 +10,8 @@ public class MouseController : MonoBehaviour
     private GameObject _pointIndicator;
     private GameObject _indicatorObject;
     public LayerMask layerMask;
+    public SubMover subMover;
+    public MiningManager miningManager;
 
     [HideInInspector]
     public RaycastHit raycastHit;
@@ -21,11 +23,20 @@ public class MouseController : MonoBehaviour
     public float ResourceDamageDuration = 1f;
     public float BaseResourceDamageAmount = 20f;
 
+    public float resourceRadiusThreshold;
+    public float indicatorRadiusThreshold;
+
+    [HideInInspector]
+    public float distanceThreshold;
+
+    public Vector3 movementPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         _indicatorObject = Instantiate(_pointIndicator);
         _mainCamera = Camera.main;
+        subMover = FindObjectOfType<SubMover>();
         if(_mainCamera == null) { Debug.LogWarning("No Main Camera found", gameObject); }
         if(_pointIndicator == null) { Debug.LogWarning("No Point Indicator found", gameObject); }
         
@@ -53,18 +64,35 @@ public class MouseController : MonoBehaviour
         {
             GameObject hitObject = raycastHit.collider.gameObject;
             
+            
             switch (LayerMask.LayerToName(hitObject.layer))
             {
                 case "Ground":
+                    subMover.stopDistance = subMover.indicatorStopDistance;
                     _indicatorObject.transform.position = raycastHit.point;
+                    movementPoint = raycastHit.point;
+                    SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MOVING);
+
                     break;
                 case "Resource":
 
-                    HealthBarBehaviour health = hitObject.GetComponentInChildren<HealthBarBehaviour>();
+                    ResourceNode resource = hitObject.GetComponentInChildren<ResourceNode>();
+                    _indicatorObject.transform.position = resource.transform.position;
+                    movementPoint = resource.transform.position;
+                    subMover.stopDistance = subMover.resourceStopDistance;
+                    Debug.Log(Vector3.Distance(hitObject.transform.position, subMover.subTransform.position));
 
-                    StartCoroutine(
-                        health.LoseHealth(ResourceDamageDuration, BaseResourceDamageAmount)
-                        );
+                    if (Vector3.Distance(hitObject.transform.position, subMover.subTransform.position) < subMover.stopDistance && miningManager.canMine)
+                    {
+                        SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
+
+                        if (miningManager.canMine)
+                        {
+                            StartCoroutine(resource.LoseDurability());
+                            miningManager.Reset();
+                        }
+                        
+                    }
 
                     break;
             }
