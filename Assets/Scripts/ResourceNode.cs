@@ -36,7 +36,7 @@ public class ResourceNode : MonoBehaviour
 
     public IEnumerator LoseDurability()
     {
-        StartCoroutine(healthBar.LoseHealth(durabilityLoss));
+        StartCoroutine(healthBar.LoseHealth(animDuration,durabilityLoss));
 
         float elapsedTime = 0f;
 
