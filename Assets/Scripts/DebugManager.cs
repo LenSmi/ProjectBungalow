@@ -7,17 +7,21 @@ public class DebugManager : MonoBehaviour
     public GUIStyle customStyle;
 
     private MouseController mouseController;
+    private Cargo cargo;
 
 
     private void Start()
     {
-        mouseController = FindObjectOfType<MouseController>();    
+        mouseController = FindObjectOfType<MouseController>();
+        cargo = FindObjectOfType<Cargo>();
     }
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 100, 100),(1.0f / Time.smoothDeltaTime).ToString("F1"), customStyle);
-        GUI.Label(new Rect(0, 30, 100, 100), mouseController.lastLayerhit, customStyle);
+        GUI.Label(new Rect(0, 0, 200, 200),(1.0f / Time.smoothDeltaTime).ToString("F1"), customStyle);
+        GUI.Label(new Rect(0, 30, 200, 200), mouseController.lastLayerhit, customStyle);
+        GUI.Label(new Rect(0, 60, 200, 200), SubStateManager.currentSubState.ToString(), customStyle);
+
     }
 
 
