@@ -8,13 +8,12 @@ public class SceneChangeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+
     }
 
 

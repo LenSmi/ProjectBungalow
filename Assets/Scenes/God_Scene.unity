@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272ec7673a7a19047a6f87ffd8c71fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCargo: 100
+  maxCargo: 4
   currentCargo: 0
   previouslyAddedAmount: 0
 --- !u!850595691 &821218021
