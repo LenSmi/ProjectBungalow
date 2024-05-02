@@ -8,6 +8,12 @@ public class Resource
 {
     public string resourceName;
     public int quantity;
+    public string description;
+}
+
+public class Junk : Resource
+{
+   
 }
 /// <summary>
 /// This script manages cargo.
@@ -19,8 +25,12 @@ public class Cargo : MonoBehaviour
     [HideInInspector]
     public Dictionary<string, int> cargoInventory = new Dictionary<string, int>();
 
+    public Dictionary<string, int> depositInventory = new Dictionary<string, int>();
+
     [HideInInspector]
-    public Dictionary<string, int> currentCargoInventory = new Dictionary<string, int>();
+    public Dictionary<string, int> subCargoInventory = new Dictionary<string, int>();
+
+    
 
     public int maxCargo;
     public int currentCargo;
@@ -32,14 +42,14 @@ public class Cargo : MonoBehaviour
     public void AddCargo(GameConstants.ResourceType type, int addedQuantity)
     {
 
-        if (!currentCargoInventory.ContainsKey(type.ToString()))
+        if (subCargoInventory.ContainsKey(type.ToString()))
         {
-            currentCargoInventory.Add(type.ToString(), addedQuantity);
+            subCargoInventory.Add(type.ToString(), addedQuantity);
             currentCargo += addedQuantity;
         }
-        else if(currentCargoInventory.ContainsKey(type.ToString()))
+        else if(subCargoInventory.ContainsKey(type.ToString()))
         {
-            currentCargoInventory[type.ToString()] += addedQuantity;
+            subCargoInventory[type.ToString()] += addedQuantity;
             var cargoCheck = currentCargo < maxCargo ? currentCargo += addedQuantity : currentCargo += 0;
             currentCargo = cargoCheck;
         }
@@ -49,6 +59,16 @@ public class Cargo : MonoBehaviour
         previouslyAddedAmount = addedQuantity;
 
         AddItemsToCargo?.Invoke();
+    }
+
+    public void AddCargoToDeposit()
+    {
+
+    }
+
+    public void AddDepositToCargoInventory()
+    {
+
     }
 
     public void CargoLimitReached()
