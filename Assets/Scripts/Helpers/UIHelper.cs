@@ -6,23 +6,23 @@ using DG.Tweening;
 
 public static class UIHelper
 {
-    public static void LerpAddFillImage(Image fillImage,float toAdd, float max, float animDuration)
+    public static void LerpAddFillImage(Image fillImage, float toAdd, float max, float animDuration)
     {
         DOTween.Init();
 
-        var finalFillAmount = (fillImage.fillAmount += toAdd) / max;
-        var clampedFillAmount = Mathf.Clamp(finalFillAmount, 0, 1f);
-
-        fillImage.DOFillAmount(clampedFillAmount, animDuration);
+        var addition = toAdd / max;
+        var finalAmount = fillImage.fillAmount + addition;
+        fillImage.DOFillAmount(finalAmount, animDuration);
     }
 
-    public static void LerpReduceFillImage(Image fillImage, float toAdd, float max, float animDuration)
+    public static void LerpReduceFillImage(Image fillImage, float toReduce, float max, float animDuration)
     {
         DOTween.Init();
 
-        var finalFillAmount = toAdd / max;
-        var clampedFillAmount = Mathf.Clamp(finalFillAmount, 0, 1f);
+        var reduction = toReduce / max;
 
-        fillImage.DOFillAmount(clampedFillAmount, animDuration);
+        Debug.Log(reduction);
+
+        fillImage.DOFillAmount(reduction, animDuration);
     }
 }

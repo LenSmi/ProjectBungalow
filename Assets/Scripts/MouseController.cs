@@ -92,7 +92,7 @@ public class MouseController : MonoBehaviour
                     {
 
                         SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
-                        StartCoroutine(resource.LoseDurability());
+                        resource.LoseDurability();
                         miningManager.Reset();
 
                     }

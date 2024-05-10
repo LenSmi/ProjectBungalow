@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum ResourceStates
 {
@@ -37,38 +38,23 @@ public class ResourceNode : MonoBehaviour
         collider.enabled = true;
     }
 
-
-    public IEnumerator LoseDurability()
+    public void LoseDurability()
     {
         if(currentHealth > 0)
         {
-
-            float elapsedTime = 0f;
-
             currentHealth -= durabilityLoss;
-
             var finalFillAmount = currentHealth / 100;
-
             Vector3 newVector = new Vector3(finalFillAmount, finalFillAmount, finalFillAmount);
 
-            while (animDuration >= elapsedTime)
-            {
-                mesh.localScale = Vector3.Lerp(mesh.localScale, newVector, elapsedTime / animDuration);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
             Cargo cargo = FindObjectOfType<Cargo>();
-
             cargo.AddCargo(resourceType, numberOfAdded);
 
-            mesh.localScale = newVector;
+            mesh.DOScale(newVector, animDuration);
         }
         else
         {
             HideNode();
         }
-
     }
 
     public void HideNode()

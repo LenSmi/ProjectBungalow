@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
+using System.Linq;
 
 public class CargoUIManager : MonoBehaviour
 {
@@ -22,10 +22,6 @@ public class CargoUIManager : MonoBehaviour
         Cargo.AddItemsToCargo += UpdateAddFillUi;
         Cargo.AddItemsToDeposit += UpdateReduceFillUi;
     }
-    private void Init()
-    {
-        
-    }
 
     private void UpdateAddFillUi()
     {
@@ -34,7 +30,7 @@ public class CargoUIManager : MonoBehaviour
 
     private void UpdateReduceFillUi()
     {
-        UIHelper.LerpAddFillImage(fillImage, cargo.subCargoInventory.Values.Count, cargo.maxCargo, lerpAnimationNumber);
+        UIHelper.LerpReduceFillImage(fillImage, cargo.subCargoInventory.Values.Sum(), cargo.maxCargo, lerpAnimationNumber);
     }
 
 }
