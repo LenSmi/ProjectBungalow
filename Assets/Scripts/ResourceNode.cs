@@ -11,7 +11,7 @@ public enum ResourceStates
 public class ResourceNode : MonoBehaviour
 {
 
-    public GameConstants.ResourceType resourceType;
+    public ResourceType resourceType;
     public ResourceStates currentResourceState;
     public Transform resourceTransform;
     public Transform mesh;
@@ -59,6 +59,7 @@ public class ResourceNode : MonoBehaviour
             }
 
             Cargo cargo = FindObjectOfType<Cargo>();
+
             cargo.AddCargo(resourceType, numberOfAdded);
 
             mesh.localScale = newVector;

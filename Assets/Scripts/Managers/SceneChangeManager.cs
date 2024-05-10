@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeManager : MonoBehaviour
 {
+    public Scene area1;
+    public Scene Hub;
+
     // Start is called before the first frame update
     void Start()
     {

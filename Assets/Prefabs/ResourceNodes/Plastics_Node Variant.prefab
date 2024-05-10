@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6856873666646292718, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: resourceType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6856873666646292718, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: miningTickInterval
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6904343445593620413, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: m_Name
-      value: Plastics_Node
+      value: Plastics_Node Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6904343445593620414, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: m_RootOrder

@@ -1,20 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
-public class Resource
+public enum ResourceType
 {
-    public string resourceName;
-    public int quantity;
-    public string description;
+    JUNK,
+    BIOMASS,
+    PLASTICS
 }
 
-public class Junk : Resource
-{
-   
-}
 /// <summary>
 /// This script manages cargo.
 /// It has the current cargo and also the cargo that is housed on land
@@ -22,39 +18,40 @@ public class Junk : Resource
 /// </summary>
 public class Cargo : MonoBehaviour
 {
-    [HideInInspector]
-    public Dictionary<string, int> cargoInventory = new Dictionary<string, int>();
-
-    public Dictionary<string, int> depositInventory = new Dictionary<string, int>();
 
     [HideInInspector]
-    public Dictionary<string, int> subCargoInventory = new Dictionary<string, int>();
+    public Dictionary<ResourceType, int> cargoInventory = new Dictionary<ResourceType, int>();
+
+    public Dictionary<ResourceType, int> depositInventory = new Dictionary<ResourceType, int>();
+
+    [HideInInspector]
+    public Dictionary<ResourceType, int> subCargoInventory = new Dictionary<ResourceType, int>();
 
     
 
     public int maxCargo;
     public int currentCargo;
-
-    public static Action AddItemsToCargo;
-    
     public int previouslyAddedAmount;
 
-    public void AddCargo(GameConstants.ResourceType type, int addedQuantity)
+    public static Action AddItemsToCargo;
+    public static Action AddItemsToDeposit;
+
+
+
+    public void AddCargo(ResourceType type, int addedQuantity)
     {
+        var cargoCheck = currentCargo < maxCargo ? addedQuantity : 0;
 
-        if (subCargoInventory.ContainsKey(type.ToString()))
+        if (!subCargoInventory.ContainsKey(type))
         {
-            subCargoInventory.Add(type.ToString(), addedQuantity);
-            currentCargo += addedQuantity;
+            subCargoInventory.Add(type, addedQuantity);
+            currentCargo += cargoCheck;
         }
-        else if(subCargoInventory.ContainsKey(type.ToString()))
+        else 
         {
-            subCargoInventory[type.ToString()] += addedQuantity;
-            var cargoCheck = currentCargo < maxCargo ? currentCargo += addedQuantity : currentCargo += 0;
-            currentCargo = cargoCheck;
+            subCargoInventory[type] += cargoCheck;
+            currentCargo += cargoCheck;
         }
-
-
 
         previouslyAddedAmount = addedQuantity;
 
@@ -63,17 +60,77 @@ public class Cargo : MonoBehaviour
 
     public void AddCargoToDeposit()
     {
+        //Check if deposit is full
+        //Check if keys exists ? if not then add keys
+        //Add resources to deposit cargo
+        //Remove resources from subinventory
+
+        foreach (var key in subCargoInventory.ToList())
+        {
+            int value = key.Value;
+
+            if (!depositInventory.ContainsKey(key.Key))
+            {
+                try
+                {
+                    depositInventory.Add(key.Key, value);
+                }
+                catch (ArgumentException) 
+                {
+                    Debug.LogError("Could not add to deposit");
+                }
+               
+
+            }
+            else
+            {
+                depositInventory[key.Key] += value;
+            }
+
+            currentCargo -= key.Value;
+            subCargoInventory[key.Key] -= value;
+        }
+
+        AddItemsToDeposit?.Invoke();
 
     }
 
     public void AddDepositToCargoInventory()
     {
-
+        //Add deposit to main cargo
+        foreach (var key in depositInventory)
+        {
+            if (!cargoInventory.ContainsKey(key.Key))
+            {
+               cargoInventory.Add(key.Key, key.Value);
+            }
+            else
+            {
+                cargoInventory[key.Key] += key.Value;
+            }
+        }
     }
 
     public void CargoLimitReached()
     {
 
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Cargo inventory after adding resources:");
+            foreach (var entry in subCargoInventory)
+            {
+                Debug.Log($"Junk in subinventory{entry.Key}: {entry.Value} units");
+            }
+
+            foreach (var entry in depositInventory)
+            {
+                Debug.Log($"Junk in deposit{entry.Key}: {entry.Value} units");
+            }
+        }
     }
 
 

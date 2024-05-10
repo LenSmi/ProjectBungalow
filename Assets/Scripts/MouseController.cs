@@ -31,12 +31,15 @@ public class MouseController : MonoBehaviour
 
     public Vector3 movementPoint;
 
+    private Cargo cargo;
+
     // Start is called before the first frame update
     void Start()
     {
         _indicatorObject = Instantiate(_pointIndicator);
         _mainCamera = Camera.main;
         subMover = FindObjectOfType<SubMover>();
+        cargo = FindObjectOfType<Cargo>();
         if(_mainCamera == null) { Debug.LogWarning("No Main Camera found", gameObject); }
         if(_pointIndicator == null) { Debug.LogWarning("No Point Indicator found", gameObject); }
         
@@ -82,18 +85,28 @@ public class MouseController : MonoBehaviour
                     subMover.stopDistance = subMover.resourceStopDistance;
                     Debug.Log(Vector3.Distance(hitObject.transform.position, subMover.subTransform.position));
 
-                    if (Vector3.Distance(hitObject.transform.position, subMover.subTransform.position) < subMover.stopDistance && miningManager.canMine)
+                    if (Vector3.Distance(hitObject.transform.position, 
+                        subMover.subTransform.position) < subMover.stopDistance 
+                        && miningManager.canMine
+                        && cargo.currentCargo != cargo.maxCargo)
                     {
-                        SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
 
-                        if (miningManager.canMine)
-                        {
-                            StartCoroutine(resource.LoseDurability());
-                            miningManager.Reset();
-                        }
-                        
+                        SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
+                        StartCoroutine(resource.LoseDurability());
+                        miningManager.Reset();
+
                     }
 
+                    break;
+                case "Deposit":
+                    Debug.Log("HitDeposit");
+
+                    if(cargo == null)
+                    {
+                        cargo = FindObjectOfType<Cargo>();
+                    }
+                    
+                    cargo.AddCargoToDeposit();
                     break;
             }
 
