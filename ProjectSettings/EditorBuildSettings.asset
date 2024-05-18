@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/God_Scene.unity
+    path: Assets/Scenes/Scene_God.unity
     guid: b360211546e1cc44aa5ce83b1e9f4091
   - enabled: 1
-    path: Assets/Scenes/Hub_Scene.unity
+    path: Assets/Scenes/Scene_Hub.unity
     guid: 110279a6d38145f44a9ddc3be6566b4b
+  - enabled: 1
+    path: Assets/Scenes/Scene_TrenchArea1.unity
+    guid: 81ce792ad33d6ea47aeb80893f63575d
   m_configObjects: {}
