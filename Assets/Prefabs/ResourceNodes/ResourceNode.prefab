@@ -88,7 +88,10 @@ MonoBehaviour:
   maxHealth: 100
   animDuration: 0.5
   numberOfAdded: 1
+  launchSpeed: 0.2
+  launchHeight: 1
   durabilityLoss: 20
+  radius: 2
 --- !u!136 &1326334921661662893
 CapsuleCollider:
   m_ObjectHideFlags: 0

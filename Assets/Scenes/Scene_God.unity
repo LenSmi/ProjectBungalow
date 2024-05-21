@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   underwaterTime: 120
   sceneChangeManager: {fileID: 1247500165}
-  initalGameScene: 1
+  initalGameScene: 2
 --- !u!1 &699528201
 GameObject:
   m_ObjectHideFlags: 0
