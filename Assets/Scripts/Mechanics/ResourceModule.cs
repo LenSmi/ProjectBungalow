@@ -5,12 +5,15 @@ using DG.Tweening;
 
 public class ResourceModule : MonoBehaviour
 {
+    [Header("References")]
     public ResourceType resourceType;
     public Transform objTransform;
     public GameObject resourceModule;
+    private GameObject playerSub;
+
+    [Header("References")]
     public int resourceQuantity;
-    public GameObject playerSub;
-    public float pickDistance;
+    public float pickUpDistance;
     public float speed;
 
     private void Start()
@@ -25,7 +28,7 @@ public class ResourceModule : MonoBehaviour
     {
         FindPlayer();
     }
-
+ 
     public void FindPlayer()
     {
         DOTween.Init();
@@ -35,7 +38,7 @@ public class ResourceModule : MonoBehaviour
             playerSub = GameObject.FindGameObjectWithTag(GameConstants.PlayerSubTag);
         }
 
-        if (Vector3.Distance(transform.position,playerSub.transform.position) < pickDistance)
+        if (Vector3.Distance(transform.position,playerSub.transform.position) < pickUpDistance)
         {
             transform.DOMove(playerSub.transform.position, speed);
         }
@@ -47,9 +50,16 @@ public class ResourceModule : MonoBehaviour
         if(other.gameObject.tag == GameConstants.PlayerSubTag)
         {
             Cargo cargo = FindObjectOfType<Cargo>();
-            cargo.AddCargo(resourceType, resourceQuantity);
-            Debug.Log("Enter");
-            Destroy(gameObject);
+            if (!cargo.IsCargoFull())
+            {
+                cargo.AddCargo(resourceType, resourceQuantity);
+                Destroy(gameObject);
+            }
         }
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 }

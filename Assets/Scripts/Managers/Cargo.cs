@@ -124,9 +124,11 @@ public class Cargo : MonoBehaviour
         }
     }
 
-    public void CargoLimitReached()
+    public bool IsCargoFull()
     {
+        var isCargoFull = currentCargo < maxCargo ? false : true;
 
+        return isCargoFull;
     }
 
     public void Update()
