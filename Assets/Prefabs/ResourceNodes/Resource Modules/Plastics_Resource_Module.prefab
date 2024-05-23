@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1025950022136800986, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025950022136800986, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025950022136800986, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025950022136800986, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1025950023321878764, guid: 74177231f87840e42a430389f46f6e13, type: 3}
       propertyPath: m_Name
       value: Plastics_Resource_Module

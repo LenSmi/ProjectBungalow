@@ -84,14 +84,13 @@ MonoBehaviour:
   resourceTransform: {fileID: 6904343445593620414}
   mesh: {fileID: 4557612478138658708}
   obj_collider: {fileID: 1326334921661662893}
-  currentHealth: 100
   maxHealth: 100
   animDuration: 0.5
-  numberOfAdded: 1
-  launchSpeed: 0.2
-  launchHeight: 1
   durabilityLoss: 20
+  launchSpeed: 0.2
+  launchHeight: 2
   radius: 2
+  launchEndPointExtra: 0.3
 --- !u!136 &1326334921661662893
 CapsuleCollider:
   m_ObjectHideFlags: 0
