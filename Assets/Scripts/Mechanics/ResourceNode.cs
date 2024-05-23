@@ -13,24 +13,28 @@ public enum ResourceStates
 
 public class ResourceNode : MonoBehaviour
 {
-
+    [Header("References")]
     public ResourceType resourceType;
     public ResourceStates currentResourceState;
     public GameObject resourceModule;
     public Transform resourceTransform;
     public Transform mesh;
     public Collider obj_collider;
-    public float currentHealth;
-    public float maxHealth;
-    public float animDuration;
-    public int numberOfAdded = 1;
-    public float launchSpeed;
-    public float launchHeight;
 
+    [Header("Durability")]
+    public float maxHealth;
+    private float currentHealth;
+    public float animDuration;
     public float durabilityLoss = 30;
 
-    private Vector3 originalMeshvalues;
+    [Header("Launch settings")]
+    public float launchSpeed;
+    public float launchHeight;
     public float radius;
+    public float launchEndPointExtra;
+
+    private Vector3 originalMeshvalues;
+
 
     private void Start()
     {
@@ -42,6 +46,7 @@ public class ResourceNode : MonoBehaviour
         currentResourceState = ResourceStates.FULL;
         originalMeshvalues = mesh.transform.localScale;
         obj_collider.enabled = true;
+        currentHealth = maxHealth;
     }
 
     public void LoseDurability()
@@ -54,10 +59,8 @@ public class ResourceNode : MonoBehaviour
 
             InstantiateResourceModule();
 
-            Cargo cargo = FindObjectOfType<Cargo>();
-            cargo.AddCargo(resourceType, numberOfAdded);
-
             mesh.DOScale(newVector, animDuration);
+
         }
         else
         {
@@ -89,10 +92,9 @@ public class ResourceNode : MonoBehaviour
         
         float angleRadian = Mathf.Rad2Deg * angle;
 
-        //position.x = objectTransform.position.x + radius * Mathf.Sin(angleRadian);
-        //position.z = objectTransform.position.z + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
         var posX = Mathf.Cos(angleRadian);
         var posZ = Mathf.Sin(angleRadian);
+
         position.x = objectTransform.position.x + posX * radius;
         position.z = objectTransform.position.z + posZ * radius;
         position.y = objectTransform.position.y;
@@ -102,13 +104,13 @@ public class ResourceNode : MonoBehaviour
     
     public void Launch(Transform objectToLaunch, Vector3 endPoint)
     {
-        DOTween.Init();
+
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(objectToLaunch.DOMove(endPoint, launchSpeed, false).SetEase(Ease.InQuad));
         sequence.Join(objectToLaunch.DOMoveY(transform.position.y + launchHeight, launchSpeed, false).SetEase(Ease.OutQuad));
-        sequence.Append(objectToLaunch.DOMoveY(endPoint.y, launchSpeed, false).SetEase(Ease.OutQuad));
-
+        sequence.Append(objectToLaunch.DOMoveY(endPoint.y + launchEndPointExtra, launchSpeed, false).SetEase(Ease.OutQuad));
+        
     }
 
 }
