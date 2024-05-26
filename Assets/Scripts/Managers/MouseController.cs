@@ -36,12 +36,15 @@ public class MouseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _indicatorObject = Instantiate(_pointIndicator);
-        _mainCamera = Camera.main;
         subMover = FindObjectOfType<SubMover>();
-        cargo = FindObjectOfType<Cargo>();
-        if(_mainCamera == null) { Debug.LogWarning("No Main Camera found", gameObject); }
-        if(_pointIndicator == null) { Debug.LogWarning("No Point Indicator found", gameObject); }
+        cargo = GameManager.Instance().cargo();
+        _mainCamera = Camera.main;
+
+        if (_mainCamera == null) { Debug.LogWarning("No Main Camera found", gameObject); }
+        if (_pointIndicator == null) { Debug.LogWarning("No Point Indicator found", gameObject); }
+
+        var indicatorVector = new Vector3(0, -5, 0);       
+        _indicatorObject = Instantiate(_pointIndicator, indicatorVector, Quaternion.identity);
         
     }
 
@@ -71,6 +74,7 @@ public class MouseController : MonoBehaviour
             switch (LayerMask.LayerToName(hitObject.layer))
             {
                 case "Ground":
+
                     subMover.stopDistance = subMover.indicatorStopDistance;
                     _indicatorObject.transform.position = raycastHit.point;
                     movementPoint = raycastHit.point;
@@ -103,7 +107,7 @@ public class MouseController : MonoBehaviour
 
                     if(cargo == null)
                     {
-                        cargo = FindObjectOfType<Cargo>();
+                        cargo = GameManager.Instance().cargo();
                     }
                     
                     cargo.AddCargoToDeposit();

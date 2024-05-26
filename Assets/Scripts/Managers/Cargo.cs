@@ -18,16 +18,13 @@ public enum ResourceType
 /// </summary>
 public class Cargo : MonoBehaviour
 {
+    private Dictionary<ResourceType, int> cargoInventory = new Dictionary<ResourceType, int>() { };
+    private Dictionary<ResourceType, int> depositInventory = new Dictionary<ResourceType, int>() { };
+    private Dictionary<ResourceType, int> subCargoInventory = new Dictionary<ResourceType, int>() { };
+    public Dictionary<ResourceType, int> CargoInventory { get => cargoInventory; set => cargoInventory = value; }
+    public Dictionary<ResourceType, int> DepositInventory { get => depositInventory; set => depositInventory = value; }
+    public Dictionary<ResourceType, int> SubCargoInventory { get => subCargoInventory; set => subCargoInventory = value; }
 
-    [HideInInspector]
-    public Dictionary<ResourceType, int> cargoInventory = new Dictionary<ResourceType, int>();
-
-    public Dictionary<ResourceType, int> depositInventory = new Dictionary<ResourceType, int>();
-
-    [HideInInspector]
-    public Dictionary<ResourceType, int> subCargoInventory = new Dictionary<ResourceType, int>();
-
-    
 
     public int maxCargo;
     public int currentCargo;
@@ -42,14 +39,14 @@ public class Cargo : MonoBehaviour
     {
         var cargoCheck = currentCargo < maxCargo ? addedQuantity : 0;
 
-        if (!subCargoInventory.ContainsKey(type))
+        if (!SubCargoInventory.ContainsKey(type))
         {
-            subCargoInventory.Add(type, addedQuantity);
+            SubCargoInventory.Add(type, addedQuantity);
             currentCargo += cargoCheck;
         }
         else 
         {
-            subCargoInventory[type] += cargoCheck;
+            SubCargoInventory[type] += cargoCheck;
             currentCargo += cargoCheck;
         }
 
@@ -65,15 +62,15 @@ public class Cargo : MonoBehaviour
         //Add resources to deposit cargo
         //Remove resources from subinventory
 
-        foreach (var key in subCargoInventory.ToList())
+        foreach (var key in SubCargoInventory.ToList())
         {
             int value = key.Value;
 
-            if (!depositInventory.ContainsKey(key.Key))
+            if (!DepositInventory.ContainsKey(key.Key))
             {
                 try
                 {
-                    depositInventory.Add(key.Key, value);
+                    DepositInventory.Add(key.Key, value);
                 }
                 catch (ArgumentException) 
                 {
@@ -84,11 +81,11 @@ public class Cargo : MonoBehaviour
             }
             else
             {
-                depositInventory[key.Key] += value;
+                DepositInventory[key.Key] += value;
             }
 
             currentCargo -= key.Value;
-            subCargoInventory[key.Key] -= value;
+            SubCargoInventory[key.Key] -= value;
         }
 
         AddItemsToDeposit?.Invoke();
@@ -98,15 +95,15 @@ public class Cargo : MonoBehaviour
     public void AddDepositToCargoInventory()
     {
         //Add deposit to main cargo
-        foreach (var key in depositInventory.ToList())
+        foreach (var key in DepositInventory.ToList())
         {
             int value = key.Value;
 
-            if (!cargoInventory.ContainsKey(key.Key))
+            if (!CargoInventory.ContainsKey(key.Key))
             {
                 try
                 {
-                    cargoInventory.Add(key.Key, value);
+                    CargoInventory.Add(key.Key, value);
                 }
                 catch (ArgumentException)
                 {
@@ -117,10 +114,10 @@ public class Cargo : MonoBehaviour
             }
             else
             {
-                cargoInventory[key.Key] += value;
+                CargoInventory[key.Key] += value;
             }
 
-            depositInventory[key.Key] -= value;
+            DepositInventory[key.Key] -= value;
         }
     }
 

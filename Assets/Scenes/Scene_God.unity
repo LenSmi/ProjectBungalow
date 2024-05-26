@@ -183,7 +183,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 699528202}
+  - {fileID: 1247500164}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,6 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStates: 0
   worldStates: 0
+  cargo_: {fileID: 699528203}
+  sceneChangeManager_: {fileID: 1247500165}
 --- !u!114 &610521689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b74bff36f505a44196bb43ed2388718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  underwaterTime: 120
+  underwaterTime: 300
   sceneChangeManager: {fileID: 1247500165}
   initalGameScene: 2
 --- !u!1 &699528201
@@ -245,8 +249,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 610521687}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &699528203
 MonoBehaviour:
@@ -292,8 +296,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 610521687}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1247500165
 MonoBehaviour:

@@ -17,7 +17,7 @@ public class CargoUIManager : MonoBehaviour
     void Start()
     {
         currentImageFillAmount = fillImage.fillAmount;
-        cargo = FindObjectOfType<Cargo>();
+        cargo = GameManager.Instance().cargo();
 
         Cargo.AddItemsToCargo += UpdateAddFillUi;
         Cargo.AddItemsToDeposit += UpdateReduceFillUi;
@@ -30,7 +30,7 @@ public class CargoUIManager : MonoBehaviour
 
     private void UpdateReduceFillUi()
     {
-        UIHelper.LerpReduceFillImage(fillImage, cargo.subCargoInventory.Values.Sum(), cargo.maxCargo, lerpAnimationNumber);
+        UIHelper.LerpReduceFillImage(fillImage, cargo.SubCargoInventory.Values.Sum(), cargo.maxCargo, lerpAnimationNumber);
     }
 
 }

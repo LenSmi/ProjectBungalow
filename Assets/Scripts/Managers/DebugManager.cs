@@ -13,7 +13,7 @@ public class DebugManager : MonoBehaviour
     private void Start()
     {
         mouseController = FindObjectOfType<MouseController>();
-        cargo = FindObjectOfType<Cargo>();
+        cargo = GameManager.Instance().cargo();
     }
 
     private void OnGUI()
