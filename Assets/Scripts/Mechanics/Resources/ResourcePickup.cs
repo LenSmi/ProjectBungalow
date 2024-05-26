@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class ResourceModule : MonoBehaviour
+public class ResourcePickup : MonoBehaviour, IPickup
 {
     [Header("References")]
     public ResourceType resourceType;
@@ -45,16 +45,21 @@ public class ResourceModule : MonoBehaviour
 
     }
 
+    public void OnPickup()
+    {
+        Cargo cargo = GameManager.Instance().cargo();
+        if (!cargo.IsCargoFull())
+        {
+            cargo.AddCargo(resourceType, resourceQuantity);
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == GameConstants.PlayerSubTag)
+        if (other.gameObject.tag == GameConstants.PlayerSubTag)
         {
-            Cargo cargo = FindObjectOfType<Cargo>();
-            if (!cargo.IsCargoFull())
-            {
-                cargo.AddCargo(resourceType, resourceQuantity);
-                Destroy(gameObject);
-            }
+            OnPickup(); 
         }
     }
 
@@ -62,4 +67,5 @@ public class ResourceModule : MonoBehaviour
     {
         transform.DOKill();
     }
+
 }

@@ -68,7 +68,7 @@ public class ResourceNode : MonoBehaviour
         }
     }
 
-    public void HideNode()
+    private void HideNode()
     {
         mesh.gameObject.SetActive(false);
         mesh.transform.localScale = originalMeshvalues;
@@ -84,7 +84,7 @@ public class ResourceNode : MonoBehaviour
     }
 
 
-    public Vector3 RandomPostionCircle(Transform objectTransform, float radius)
+    private Vector3 RandomPostionCircle(Transform objectTransform, float radius)
     {
         Vector3 position;
 
@@ -102,7 +102,7 @@ public class ResourceNode : MonoBehaviour
         return position;
     }
     
-    public void Launch(Transform objectToLaunch, Vector3 endPoint)
+    private void Launch(Transform objectToLaunch, Vector3 endPoint)
     {
 
         Sequence sequence = DOTween.Sequence();

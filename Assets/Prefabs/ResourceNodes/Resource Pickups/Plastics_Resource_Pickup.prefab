@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1025950023321878764, guid: 74177231f87840e42a430389f46f6e13, type: 3}
       propertyPath: m_Name
-      value: Plastics_Resource_Module
+      value: Plastics_Resource_Pickup
       objectReference: {fileID: 0}
     - target: {fileID: 1025950023321878765, guid: 74177231f87840e42a430389f46f6e13, type: 3}
       propertyPath: m_RootOrder
@@ -71,5 +71,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2822543856109385442, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: objTransform
+      value: 
+      objectReference: {fileID: 7546498317327942776}
+    - target: {fileID: 2822543856109385442, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: resourceType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822543856109385442, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+      propertyPath: resourceModule
+      value: 
+      objectReference: {fileID: 7546498317327942777}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+--- !u!4 &7546498317327942776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1025950023321878765, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+  m_PrefabInstance: {fileID: 7387702330689176725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7546498317327942777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1025950023321878764, guid: 74177231f87840e42a430389f46f6e13, type: 3}
+  m_PrefabInstance: {fileID: 7387702330689176725}
+  m_PrefabAsset: {fileID: 0}

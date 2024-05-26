@@ -18,7 +18,7 @@ public class InteractionHandler : MonoBehaviour
 
     private void Start()
     {
-        sceneChangeManager = FindObjectOfType<SceneChangeManager>();
+        sceneChangeManager = GameManager.Instance().sceneChangeManager();
     }
 
     public void Update()
@@ -52,7 +52,7 @@ public class InteractionHandler : MonoBehaviour
     {
         if(sceneChangeManager == null)
         {
-            sceneChangeManager = FindObjectOfType<SceneChangeManager>();
+            sceneChangeManager = GameManager.Instance().sceneChangeManager();
         }
 
         switch (interactionInput)

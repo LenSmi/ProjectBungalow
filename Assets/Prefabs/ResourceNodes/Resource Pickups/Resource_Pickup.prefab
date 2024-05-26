@@ -106,11 +106,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7998249195767099727}
-  - component: {fileID: 7998249195767099724}
+  - component: {fileID: 5181433113304860480}
   - component: {fileID: 1507725948729799474}
   - component: {fileID: 8586530658518858034}
   m_Layer: 0
-  m_Name: Resource_Module
+  m_Name: Resource_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7998249195767099724
+--- !u!114 &5181433113304860480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  objTransform: {fileID: 7998249195767099727}
-  resourceModule: {fileID: 7998249195767099726}
+  objTransform: {fileID: 0}
+  resourceModule: {fileID: 0}
   resourceQuantity: 3
-  pickUpDistance: 1.5
+  pickUpDistance: 0.1
   speed: 2
 --- !u!135 &1507725948729799474
 SphereCollider:
