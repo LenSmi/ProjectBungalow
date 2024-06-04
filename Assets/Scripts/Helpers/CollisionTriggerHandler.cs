@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionResult
+public class CollisionTriggerHandler : MonoBehaviour
 {
-    LOADHUB,
-    LOAD_TRENCHAREA_1,
-    LOAD_SCORE_ATTACK
-}
-
-public class InteractionHandler : MonoBehaviour
-{
-    public KeyCode input;
-    public InteractionResult interactionResult;
     public Collider obj_collider;
+    public InteractionResult interactionResult;
     private bool isColliding = false;
     private SceneChangeManager sceneChangeManager;
 
@@ -22,19 +14,13 @@ public class InteractionHandler : MonoBehaviour
         sceneChangeManager = GameManager.Instance().sceneChangeManager();
     }
 
-    public void Update()
-    {
-        if(isColliding && Input.GetKeyDown(input))
-        {
-            Interaction(interactionResult);
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
         {
             isColliding = true;
+            Interaction(interactionResult);
         }
 
     }
@@ -51,7 +37,7 @@ public class InteractionHandler : MonoBehaviour
 
     public void Interaction(InteractionResult interactionInput)
     {
-        if(sceneChangeManager == null)
+        if (sceneChangeManager == null)
         {
             sceneChangeManager = GameManager.Instance().sceneChangeManager();
         }
@@ -65,6 +51,10 @@ public class InteractionHandler : MonoBehaviour
             case InteractionResult.LOAD_TRENCHAREA_1:
                 Debug.Log("Loading Trench Area 1");
                 StartCoroutine(sceneChangeManager.LoadGameScene(GameScenes.Scene_TrenchArea1));
+                break;
+            case InteractionResult.LOAD_SCORE_ATTACK:
+                Debug.Log("Loading Score Attack");
+                StartCoroutine(sceneChangeManager.LoadGameScene(GameScenes.Scene_Score_Attack));
                 break;
         }
     }
