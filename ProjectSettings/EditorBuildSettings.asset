@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGame/Scene_TrenchArea1.unity
     guid: 81ce792ad33d6ea47aeb80893f63575d
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/Scene_Score_Attack.unity
+    guid: a2a11a0d695e65b47a3ae1867d96b7d5
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/Scene_Score_Attack_Saloon.unity
+    guid: 857c326bea989c146ae64182f318da59
   m_configObjects: {}

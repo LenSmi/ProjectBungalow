@@ -7,7 +7,9 @@ public enum GameScenes
 {
     Scene_God,
     Scene_Hub,
-    Scene_TrenchArea1
+    Scene_TrenchArea1,
+    Scene_Score_Attack_Saloon,
+    Scene_Score_Attack
 }
 
 public class SceneChangeManager : MonoBehaviour
