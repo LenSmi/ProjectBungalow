@@ -8,7 +8,8 @@ public enum ResourceType
 {
     JUNK,
     BIOMASS,
-    PLASTICS
+    PLASTICS,
+    CREDITS
 }
 
 /// <summary>

@@ -11,10 +11,11 @@ public class ResourcePickup : MonoBehaviour, IPickup
     public GameObject resourceModule;
     private GameObject playerSub;
 
-    [Header("References")]
-    public int resourceQuantity;
-    public float pickUpDistance;
-    public float speed;
+    [Header("Variables")]
+    public int ResourceQuantity;
+    public float PickUpDistance;
+    public float MovementSpeed;
+    public float ScoreValue;
 
     private void Start()
     {
@@ -26,9 +27,20 @@ public class ResourcePickup : MonoBehaviour, IPickup
 
     public void FixedUpdate()
     {
-        FindPlayer();
+        if (Vector3.Distance(transform.position, playerSub.transform.position) < PickUpDistance)
+        {
+            FindPlayer();
+        }
     }
- 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == GameConstants.PlayerSubTag)
+        {
+            OnPickup();
+        }
+    }
+
     public void FindPlayer()
     {
         DOTween.Init();
@@ -38,10 +50,7 @@ public class ResourcePickup : MonoBehaviour, IPickup
             playerSub = GameObject.FindGameObjectWithTag(GameConstants.PlayerSubTag);
         }
 
-        if (Vector3.Distance(transform.position,playerSub.transform.position) < pickUpDistance)
-        {
-            transform.DOMove(playerSub.transform.position, speed);
-        }
+        transform.DOMove(playerSub.transform.position, MovementSpeed);
 
     }
 
@@ -50,16 +59,8 @@ public class ResourcePickup : MonoBehaviour, IPickup
         Cargo cargo = GameManager.Instance().cargo();
         if (!cargo.IsCargoFull())
         {
-            cargo.AddCargo(resourceType, resourceQuantity);
+            cargo.AddCargo(resourceType, ResourceQuantity);
             Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == GameConstants.PlayerSubTag)
-        {
-            OnPickup(); 
         }
     }
 
@@ -68,4 +69,8 @@ public class ResourcePickup : MonoBehaviour, IPickup
         transform.DOKill();
     }
 
+    public void CalculateScore()
+    {
+        throw new System.NotImplementedException();
+    }
 }
