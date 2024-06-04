@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2574430956463779445}
   m_Layer: 0
   m_Name: MAIN_CAM
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,4 +150,12 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 72
+  subMover: {fileID: 0}
+  miningManager: {fileID: 0}
   lastLayerhit: 
+  ResourceDamageDuration: 1
+  BaseResourceDamageAmount: 20
+  resourceRadiusThreshold: 0
+  indicatorRadiusThreshold: 0
+  distanceThreshold: 0
+  movementPoint: {x: 0, y: 0, z: 0}

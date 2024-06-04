@@ -786,7 +786,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 11a4e3fe8a59b054bb34664ef83c35fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -827,7 +827,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &1228462223593306834
@@ -891,14 +891,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseController: {fileID: 0}
   subTransform: {fileID: 0}
-  rotSpeed: 200
-  movementSpeed: 7
+  rotSpeed: 5
+  movementSpeed: 4
   stopDistance: 0
-  indicatorStopDistance: 1
+  indicatorStopDistance: 0
   resourceStopDistance: 2
   tracker: {fileID: 0}
-  angleOffsetX: 0
-  angleOffsetZ: 0
+  angleOffsetX: 0.8
+  angleOffsetZ: -0.8
   input: {x: 0, y: 0, z: 0}
 --- !u!114 &5738568085583983742
 MonoBehaviour:
@@ -913,10 +913,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durabilityLoss: 30
-  miningTickInterval: 0
+  miningTickInterval: 1
   timer: 0
   canMine: 0
-  ticking: 0
+  ticking: 1
 --- !u!54 &1228462223593306836
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1205,6 +1205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5824099400767854057}
   - component: {fileID: 3375856663260837797}
+  - component: {fileID: 1529924256562453202}
   m_Layer: 0
   m_Name: Body
   m_TagString: PlayerSub
@@ -1248,6 +1249,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &1529924256562453202
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4474154670089015168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0.1, y: 0, z: -0.4}
 --- !u!1 &5651819021597232628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1704,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 11a4e3fe8a59b054bb34664ef83c35fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1730,7 +1745,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &6027748236702893544
@@ -1821,6 +1836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tempShip
       objectReference: {fileID: 0}
+    - target: {fileID: 8174127307919681617, guid: 5a4bc344f292224458a4013f0a43dbf4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe345de2a3f000e449706a7b62c77bc0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4bc344f292224458a4013f0a43dbf4, type: 3}
 --- !u!4 &4219398843431672641 stripped
