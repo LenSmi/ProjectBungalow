@@ -38,6 +38,7 @@ public class Cargo : MonoBehaviour
 
     public void AddCargo(ResourceType type, int addedQuantity)
     {
+
         var cargoCheck = currentCargo < maxCargo ? addedQuantity : 0;
 
         if (!SubCargoInventory.ContainsKey(type))
@@ -58,10 +59,6 @@ public class Cargo : MonoBehaviour
 
     public void AddCargoToDeposit()
     {
-        //Check if deposit is full
-        //Check if keys exists ? if not then add keys
-        //Add resources to deposit cargo
-        //Remove resources from subinventory
 
         foreach (var key in SubCargoInventory.ToList())
         {
@@ -90,12 +87,11 @@ public class Cargo : MonoBehaviour
         }
 
         AddItemsToDeposit?.Invoke();
-
     }
 
     public void AddDepositToCargoInventory()
     {
-        //Add deposit to main cargo
+
         foreach (var key in DepositInventory.ToList())
         {
             int value = key.Value;
@@ -125,7 +121,6 @@ public class Cargo : MonoBehaviour
     public bool IsCargoFull()
     {
         var isCargoFull = currentCargo < maxCargo ? false : true;
-
         return isCargoFull;
     }
 
@@ -145,7 +140,4 @@ public class Cargo : MonoBehaviour
             }
         }
     }
-
-
-
 }

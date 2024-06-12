@@ -9,7 +9,6 @@ public static class MovementHelpers
     {
         p1.position = Vector3.MoveTowards(p1.position, destination, speed * Time.fixedDeltaTime);
 
-
         Quaternion previousRotation = new Quaternion();
 
         if (input != Vector3.zero) 
@@ -17,15 +16,11 @@ public static class MovementHelpers
 
             var relativePos = input;
             Debug.DrawRay(p1.position, relativePos * 2f, Color.green);
-            //Get rotations
 
             var rotationPoint = Quaternion.LookRotation(relativePos);
 
             rotationPoint.x = 0;
             rotationPoint.z = 0;
-            //Set rotation
-
-            
 
             p1.rotation = Quaternion.Slerp(p1.rotation, rotationPoint, rotationSpeed * Time.deltaTime);
             previousRotation = p1.rotation;

@@ -20,9 +20,6 @@ public static class UIHelper
         DOTween.Init();
 
         var reduction = toReduce / max;
-
-        Debug.Log(reduction);
-
         fillImage.DOFillAmount(reduction, animDuration);
     }
 }
