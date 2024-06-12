@@ -109,8 +109,16 @@ public class MouseController : MonoBehaviour
                     {
                         cargo = GameManager.Instance().cargo();
                     }
-                    
+
+                    MinigameManager manager = GameManager.Instance().minigameManager();
+
+                    if(manager.CurrentQuota != 0)
+                    {
+                        manager.DepositQuota();
+                    }
+
                     cargo.AddCargoToDeposit();
+
                     break;
             }
 

@@ -15,7 +15,7 @@ public class ResourcePickup : MonoBehaviour, IPickup
     public int ResourceQuantity;
     public float PickUpDistance;
     public float MovementSpeed;
-    public float ScoreValue;
+    public int ScoreAttackValue;
 
     private void Start()
     {
@@ -57,6 +57,9 @@ public class ResourcePickup : MonoBehaviour, IPickup
     public void OnPickup()
     {
         Cargo cargo = GameManager.Instance().cargo();
+        MinigameManager manager = GameManager.Instance().minigameManager();
+        manager.UpdateQuota(ScoreAttackValue);
+
         if (!cargo.IsCargoFull())
         {
             cargo.AddCargo(resourceType, ResourceQuantity);

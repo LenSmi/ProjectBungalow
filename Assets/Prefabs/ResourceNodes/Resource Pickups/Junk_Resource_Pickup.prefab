@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: resourceModule
       value: 
       objectReference: {fileID: 5907885506489859609}
+    - target: {fileID: 5181433113304860480, guid: 00a3561378cdefc40be516c50a8feaf9, type: 3}
+      propertyPath: ResourceQuantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181433113304860480, guid: 00a3561378cdefc40be516c50a8feaf9, type: 3}
+      propertyPath: ScoreAttackValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7998249194536261496, guid: 00a3561378cdefc40be516c50a8feaf9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
