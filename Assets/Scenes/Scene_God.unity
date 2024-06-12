@@ -307,6 +307,7 @@ MonoBehaviour:
   worldStates: 0
   cargo_: {fileID: 699528203}
   sceneChangeManager_: {fileID: 1247500165}
+  minigameManager_: {fileID: 964743120}
 --- !u!114 &610521689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   underwaterTime: 300
   sceneChangeManager: {fileID: 1247500165}
-  initalGameScene: 3
+  initalGameScene: 4
 --- !u!1 &699528201
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,8 +414,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b34c3e251bca64a9fbe7cdd8c5ef6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Total_SCA_Score: 0
-  ScoreModifier: 0
+  ScoreAttack_TotalScore: 0
+  ScoreModifier: 1
+  StartingQuota: 0
+  CurrentQuota: 0
+  QuotaThreshold: 100
+  PreviousQuotaAddition: 0
 --- !u!1 &1247500163
 GameObject:
   m_ObjectHideFlags: 0
