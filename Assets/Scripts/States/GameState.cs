@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class GameState : MonoBehaviour
+public abstract class GameState : MonoBehaviour
 {
     protected GameManager gameManager;
+
     virtual protected void Awake()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
+        Assert.IsTrue(gameManager != null, "Could not find Game Manager");
     }
 }
