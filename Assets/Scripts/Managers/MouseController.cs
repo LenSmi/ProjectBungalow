@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class MouseController : MonoBehaviour
 {
@@ -112,7 +113,7 @@ public class MouseController : MonoBehaviour
 
                     MinigameManager manager = GameManager.Instance().MinigameManager();
 
-                    if(manager.CurrentQuota != 0)
+                    if(manager.AddedQuota != 0)
                     {
                         manager.DepositQuota();
                     }

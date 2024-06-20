@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 1025950023321878764}
     - target: {fileID: 5181433113304860480, guid: 00a3561378cdefc40be516c50a8feaf9, type: 3}
       propertyPath: ResourceQuantity
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5181433113304860480, guid: 00a3561378cdefc40be516c50a8feaf9, type: 3}
       propertyPath: ScoreAttackValue
