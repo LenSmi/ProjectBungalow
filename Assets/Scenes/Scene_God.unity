@@ -326,6 +326,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274814825}
   m_CullTransparentMesh: 1
+--- !u!1 &380938618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 380938620}
+  m_Layer: 0
+  m_Name: States
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &380938620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380938618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 610521687}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447585941
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +455,7 @@ Transform:
   - {fileID: 699528202}
   - {fileID: 1247500164}
   - {fileID: 964743119}
+  - {fileID: 380938620}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -459,9 +491,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b74bff36f505a44196bb43ed2388718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialGameState: 1
+  gameStates: 0
   underwaterTime: 300
   sceneChangeManager: {fileID: 1247500165}
-  initalGameScene: 4
+  stateObject: {fileID: 0}
 --- !u!1 &699528201
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class ScoreAttackEndState : GameState, IGameState
 
     public void ExitGamestate()
     {
-        throw new System.NotImplementedException();
+
     }
 
 }

@@ -10,12 +10,12 @@ public class HubState : GameState, IGameState
     }
     public void EnterGamestate()
     {
-        throw new System.NotImplementedException();
+        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_Hub);
     }
 
     public void ExitGamestate()
     {
-        throw new System.NotImplementedException();
+
     }
 
 }

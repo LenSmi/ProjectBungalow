@@ -10,12 +10,13 @@ public class ScoreAttackStartState : GameState, IGameState
     }
     public void EnterGamestate()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Entering state SCA START");
+        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_Score_Attack);
     }
 
     public void ExitGamestate()
     {
-        throw new System.NotImplementedException();
+
     }
 
 }

@@ -8,10 +8,12 @@ public class CollisionTriggerHandler : MonoBehaviour
     public InteractionResult interactionResult;
     private bool isColliding = false;
     private SceneChangeManager sceneChangeManager;
+    private WorldStateManager worldStateManager;
 
     private void Start()
     {
         sceneChangeManager = GameManager.Instance().SceneChangeManager();
+        worldStateManager = GameManager.Instance().WorldStateManager();
     }
 
 
@@ -44,17 +46,20 @@ public class CollisionTriggerHandler : MonoBehaviour
 
         switch (interactionInput)
         {
+            case InteractionResult.LOAD_SCORE_ATTACK_SALLOON:
+                worldStateManager.TransitionToState(EGameStates.ScoreAttackSaloon);
+                break;
             case InteractionResult.LOADHUB:
                 Debug.Log("Loading Hub");
-                StartCoroutine(sceneChangeManager.LoadGameScene(GameScenes.Scene_Hub));
+                worldStateManager.TransitionToState(EGameStates.Hub);
                 break;
             case InteractionResult.LOAD_TRENCHAREA_1:
                 Debug.Log("Loading Trench Area 1");
-                StartCoroutine(sceneChangeManager.LoadGameScene(GameScenes.Scene_TrenchArea1));
+                worldStateManager.TransitionToState(EGameStates.Trench);
                 break;
             case InteractionResult.LOAD_SCORE_ATTACK:
                 Debug.Log("Loading Score Attack");
-                StartCoroutine(sceneChangeManager.LoadGameScene(GameScenes.Scene_Score_Attack));
+                worldStateManager.TransitionToState(EGameStates.ScoreAttackStart);
                 break;
         }
     }

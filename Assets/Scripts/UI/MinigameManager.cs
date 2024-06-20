@@ -34,7 +34,7 @@ public class MinigameManager : MonoBehaviour
 
         if(CurrentQuota >= QuotaThreshold)
         {
-            GameManager.Instance().WorldStateManager().TransitionToState(WorldStateManager.scoreAttackEndState);
+            GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
             CurrentQuota = 0;
         }
         else

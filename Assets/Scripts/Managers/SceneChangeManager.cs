@@ -41,7 +41,7 @@ public class SceneChangeManager : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 
-    public IEnumerator LoadGameScene(GameScenes sceneToLoad)
+    private IEnumerator IELoadGameScene(GameScenes sceneToLoad)
     {
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(GameScenes.Scene_God.ToString()))
         {
@@ -69,6 +69,11 @@ public class SceneChangeManager : MonoBehaviour
         }
 
    
+    }
+
+    public void LoadGameScene(GameScenes scene)
+    {
+        StartCoroutine(IELoadGameScene(scene));
     }
 
     

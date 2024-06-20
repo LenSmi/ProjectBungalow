@@ -6,12 +6,12 @@ public class TrenchState : GameState, IGameState
 {
     public void EnterGamestate()
     {
-        throw new System.NotImplementedException();
+        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_TrenchArea1);
     }
 
     public void ExitGamestate()
     {
-        throw new System.NotImplementedException();
+
     }
 
 }
