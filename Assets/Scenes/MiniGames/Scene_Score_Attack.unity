@@ -668,7 +668,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-130658
+  m_Name: pb_Mesh-1430
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1061,6 +1061,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1957416594}
+    - target: {fileID: 5738568085583983742, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: miningTickInterval
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6163698952080534672, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1711,7 +1715,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-130672
+  m_Name: pb_Mesh-1444
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

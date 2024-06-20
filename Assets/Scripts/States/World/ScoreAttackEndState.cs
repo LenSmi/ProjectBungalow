@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HubState : GameState, IGameState
+public class ScoreAttackEndState : GameState, IGameState
 {
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
     }
+
     public void EnterGamestate()
     {
-        throw new System.NotImplementedException();
+        //gameManager.UIManager().scoreCalc.SetActive(true);
+        GameManager.Instance().UIManager().scoreCalc.SetActive(true);
     }
 
     public void ExitGamestate()

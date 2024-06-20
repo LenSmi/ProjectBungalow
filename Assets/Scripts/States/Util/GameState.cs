@@ -7,9 +7,9 @@ public abstract class GameState : MonoBehaviour
 {
     protected GameManager gameManager;
 
-    virtual protected void Awake()
+    virtual public void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.Instance();
         Assert.IsTrue(gameManager != null, "Could not find Game Manager");
     }
 }

@@ -13,7 +13,7 @@ public class QuotaUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        minigameManager = GameManager.Instance().minigameManager();
+        minigameManager = GameManager.Instance().MinigameManager();
         MinigameManager.AddToDepositQuota += UpdateQuotaUI;
         fillImage.fillAmount = minigameManager.StartingQuota / minigameManager.QuotaThreshold;
     }

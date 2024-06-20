@@ -57,8 +57,8 @@ public class ResourcePickup : MonoBehaviour, IPickup
     public void OnPickup()
     {
 
-        MinigameManager manager = GameManager.Instance().minigameManager();
         manager.UpdateQuota(ScoreAttackValue);
+        MinigameManager manager = GameManager.Instance().MinigameManager();
 
         Cargo cargo = GameManager.Instance().cargo();
 

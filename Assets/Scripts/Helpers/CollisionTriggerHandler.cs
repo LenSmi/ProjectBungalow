@@ -11,7 +11,7 @@ public class CollisionTriggerHandler : MonoBehaviour
 
     private void Start()
     {
-        sceneChangeManager = GameManager.Instance().sceneChangeManager();
+        sceneChangeManager = GameManager.Instance().SceneChangeManager();
     }
 
 
@@ -39,7 +39,7 @@ public class CollisionTriggerHandler : MonoBehaviour
     {
         if (sceneChangeManager == null)
         {
-            sceneChangeManager = GameManager.Instance().sceneChangeManager();
+            sceneChangeManager = GameManager.Instance().SceneChangeManager();
         }
 
         switch (interactionInput)

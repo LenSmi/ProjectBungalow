@@ -9,6 +9,7 @@ public class MinigameManager : MonoBehaviour
     public int ScoreAttack_TotalScore = 0;
     public int ScoreModifier = 1;
     public int StartingQuota;
+    public int AddedQuota;
     public int CurrentQuota;
     public int QuotaThreshold;
     public int QuotaDeposit;
@@ -21,14 +22,25 @@ public class MinigameManager : MonoBehaviour
 
     public void UpdateQuota(int quantity)
     {
-        CurrentQuota += quantity;
-        QuotaDeposit = CurrentQuota;
+        AddedQuota += quantity;
+        QuotaDeposit = AddedQuota;
     }
 
     public void DepositQuota()
     {
+        CurrentQuota += QuotaDeposit;
         Debug.Log("Called");
         AddToDepositQuota?.Invoke();
-        CurrentQuota = 0;
+
+        if(CurrentQuota >= QuotaThreshold)
+        {
+            GameManager.Instance().WorldStateManager().TransitionToState(WorldStateManager.scoreAttackEndState);
+            CurrentQuota = 0;
+        }
+        else
+        {
+            AddedQuota = 0;
+        }
+
     }
 }

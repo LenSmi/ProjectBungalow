@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerUIManager : MonoBehaviour
 {
 
-    private WorldState worldState;
+    private WorldStateManager worldState;
     private float timer;
     public Image fillImage;
     public bool isTicking = false;
@@ -14,7 +14,7 @@ public class TimerUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        worldState = FindObjectOfType<WorldState>();
+        worldState = GameManager.Instance().WorldStateManager();
         timer = worldState.underwaterTime;
         isTicking = true;
     }
