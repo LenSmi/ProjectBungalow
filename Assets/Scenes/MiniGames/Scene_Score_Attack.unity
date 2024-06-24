@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 557122748}
   - component: {fileID: 557122747}
   - component: {fileID: 557122746}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Deposit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2037,7 +2037,7 @@ PrefabInstance:
       objectReference: {fileID: 1422627290}
     - target: {fileID: 6182875168732333421, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
       propertyPath: layerMask.m_Bits
-      value: 200
+      value: 456
       objectReference: {fileID: 0}
     - target: {fileID: 7076997560668096932, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
       propertyPath: m_RootOrder

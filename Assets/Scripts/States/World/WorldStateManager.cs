@@ -18,7 +18,6 @@ public class WorldStateManager : MonoBehaviour
     [HideInInspector]
     public EGameStates gameStates;
     public GameState currentGameState;
-    public GameState currentState;
     public float underwaterTime;
     public SceneChangeManager sceneChangeManager;
     public GameObject stateObject;
