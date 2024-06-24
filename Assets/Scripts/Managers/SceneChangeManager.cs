@@ -41,11 +41,13 @@ public class SceneChangeManager : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 
-    private IEnumerator IELoadGameScene(GameScenes sceneToLoad)
+    public IEnumerator IELoadGameScene(GameScenes sceneToLoad)
     {
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(GameScenes.Scene_God.ToString()))
         {
+            Debug.Log("Active Scene is" + SceneManager.GetActiveScene().name);
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+           
         }
 
         yield return StartCoroutine(LoadGameSceneAsync(sceneToLoad));
@@ -63,21 +65,12 @@ public class SceneChangeManager : MonoBehaviour
             {
                 // Here you can communicate the progress to the player
                 // e.g., a loading bar
-                Debug.Log("Loading: " + sceneToLoad.ToString());
                 yield return null;
             }
         }
 
    
     }
-
-    public void LoadGameScene(GameScenes scene)
-    {
-        StartCoroutine(IELoadGameScene(scene));
-    }
-
-    
-
 
 
 

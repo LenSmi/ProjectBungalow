@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreAttackStartState : GameState, IGameState
+public class ScoreAttackStartState : GameState
 {
     public override void Awake()
     {
         base.Awake();
     }
-    public void EnterGamestate()
+    public override void EnterGamestate()
     {
         Debug.Log("Entering state SCA START");
-        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_Score_Attack);
+        StartCoroutine(GameManager.Instance().SceneChangeManager().IELoadGameScene(GameScenes.Scene_Score_Attack));
     }
 
-    public void ExitGamestate()
+    public override void ExitGamestate()
     {
 
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public abstract class GameState
+public abstract class GameState : MonoBehaviour, IGameState
 {
     protected GameManager gameManager;
     protected SceneChangeManager sceneChangeManager;
@@ -14,4 +14,10 @@ public abstract class GameState
         sceneChangeManager = GameManager.Instance().SceneChangeManager();
         Assert.IsTrue(gameManager != null, "Could not find Game Manager");
     }
+
+    public abstract void EnterGamestate();
+
+
+    public abstract void ExitGamestate();
+
 }

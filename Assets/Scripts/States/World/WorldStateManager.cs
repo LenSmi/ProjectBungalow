@@ -17,16 +17,11 @@ public class WorldStateManager : MonoBehaviour
     public EGameStates initialGameState;
     [HideInInspector]
     public EGameStates gameStates;
-    public IGameState currentGameState;
+    public GameState currentGameState;
+    public GameState currentState;
     public float underwaterTime;
     public SceneChangeManager sceneChangeManager;
     public GameObject stateObject;
-
-    public LoadingState loadingState = new LoadingState();
-    public TrenchState trenchState = new TrenchState();
-    public HubState hubState = new HubState();
-    public ScoreAttackStartState scoreAttackStartState = new ScoreAttackStartState();
-    public ScoreAttackEndState scoreAttackEndState = new ScoreAttackEndState();
 
     public void Start()
     {
@@ -37,39 +32,36 @@ public class WorldStateManager : MonoBehaviour
 
     public void TransitionToState(EGameStates gameState)
     {
-        if(currentGameState != null)
-        {
-            currentGameState.ExitGamestate();
-        }
 
         switch (gameState)
         {
             case EGameStates.Hub:
-                currentGameState = hubState;
-                currentGameState.EnterGamestate();
+                ChangeState<HubState>();
                 break;
             case EGameStates.Trench:
-                currentGameState = trenchState;
-                currentGameState.EnterGamestate();
+                ChangeState<TrenchState>();
                 break;
             case EGameStates.ScoreAttackSaloon:
+                ChangeState<ScoreAttackSaloonState>();
                 break;
             case EGameStates.ScoreAttackStart:
-                currentGameState = scoreAttackStartState;
-                currentGameState.EnterGamestate();
+                ChangeState<ScoreAttackStartState>();
                 break;
             case EGameStates.ScoreAttackEnd:
-                currentGameState = scoreAttackEndState;
-                currentGameState.EnterGamestate();
+                ChangeState<ScoreAttackEndState>();
                 break;
         }
     }
 
-    public void AddStateComponent(System.Type type)
+    public void ChangeState<T>() where T: GameState
     {
-        Destroy(stateObject);
-        stateObject = new GameObject();
-        stateObject.name = "CurrentStateObject";
-        stateObject.AddComponent(type);
+        if (currentGameState != null)
+        {
+            currentGameState.ExitGamestate();
+            Destroy(currentGameState);
+        }
+
+        currentGameState = stateObject.AddComponent<T>();
+        currentGameState.EnterGamestate();
     }
 }

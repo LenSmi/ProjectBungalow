@@ -493,9 +493,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialGameState: 1
   gameStates: 0
+  currentGameState: {fileID: 0}
+  currentState: {fileID: 0}
   underwaterTime: 300
   sceneChangeManager: {fileID: 1247500165}
-  stateObject: {fileID: 0}
+  stateObject: {fileID: 380938618}
 --- !u!1 &699528201
 GameObject:
   m_ObjectHideFlags: 0

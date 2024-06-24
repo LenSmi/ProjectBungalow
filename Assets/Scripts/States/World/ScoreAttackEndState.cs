@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreAttackEndState : GameState, IGameState
+public class ScoreAttackEndState : GameState
 {
     public override void Awake()
     {
         base.Awake();
     }
 
-    public void EnterGamestate()
+    public override void EnterGamestate()
     {
         //gameManager.UIManager().scoreCalc.SetActive(true);
         GameManager.Instance().UIManager().scoreCalc.SetActive(true);
     }
 
-    public void ExitGamestate()
+    public override void ExitGamestate()
     {
 
     }

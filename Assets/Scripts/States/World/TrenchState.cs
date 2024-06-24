@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrenchState : GameState, IGameState
+public class TrenchState : GameState
 {
-    public void EnterGamestate()
+    public override void EnterGamestate()
     {
-        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_TrenchArea1);
+        StartCoroutine(GameManager.Instance().SceneChangeManager().IELoadGameScene(GameScenes.Scene_TrenchArea1));
     }
 
-    public void ExitGamestate()
+    public override void ExitGamestate()
     {
 
     }

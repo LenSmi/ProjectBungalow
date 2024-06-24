@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadingState : GameState,IGameState
+public class LoadingState : GameState
 {
-    public void EnterGamestate()
+    public override void EnterGamestate()
     {
         throw new System.NotImplementedException();
     }
 
-    public void ExitGamestate()
+    public override void ExitGamestate()
     {
         throw new System.NotImplementedException();
     }

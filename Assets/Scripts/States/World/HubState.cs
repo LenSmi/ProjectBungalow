@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HubState : GameState, IGameState
+public class HubState : GameState
 {
     public override void Awake()
     {
         base.Awake();
     }
-    public void EnterGamestate()
+    public override void EnterGamestate()
     {
-        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_Hub);
+        StartCoroutine(GameManager.Instance().SceneChangeManager().IELoadGameScene(GameScenes.Scene_Hub));
     }
 
-    public void ExitGamestate()
+    public override void ExitGamestate()
     {
 
     }
