@@ -58,9 +58,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7076997561963360471}
+  - component: {fileID: 6182875168732333421}
   - component: {fileID: 7076997561963360468}
   - component: {fileID: 7076997561963360469}
-  - component: {fileID: 6182875168732333421}
+  - component: {fileID: 286121796620335810}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -83,6 +84,31 @@ Transform:
   m_Father: {fileID: 7076997560668096932}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6182875168732333421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7076997561963360466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07e350f544d8a4da697acbbf619e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointIndicator: {fileID: 4188701029795423035, guid: 31f65bc436c541f46803d977d1a30b08, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  subMover: {fileID: 0}
+  miningManager: {fileID: 0}
+  lastLayerhit: 
+  ResourceDamageDuration: 1
+  BaseResourceDamageAmount: 20
+  resourceRadiusThreshold: 0
+  indicatorRadiusThreshold: 0
+  distanceThreshold: 0
+  movementPoint: {x: 0, y: 0, z: 0}
 --- !u!20 &7076997561963360468
 Camera:
   m_ObjectHideFlags: 0
@@ -134,7 +160,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7076997561963360466}
   m_Enabled: 1
---- !u!114 &6182875168732333421
+--- !u!114 &286121796620335810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,19 +169,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7076997561963360466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec07e350f544d8a4da697acbbf619e25, type: 3}
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointIndicator: {fileID: 4188701029795423035, guid: 31f65bc436c541f46803d977d1a30b08, type: 3}
-  layerMask:
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 72
-  subMover: {fileID: 0}
-  miningManager: {fileID: 0}
-  lastLayerhit: 
-  ResourceDamageDuration: 1
-  BaseResourceDamageAmount: 20
-  resourceRadiusThreshold: 0
-  indicatorRadiusThreshold: 0
-  distanceThreshold: 0
-  movementPoint: {x: 0, y: 0, z: 0}
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
