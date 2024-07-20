@@ -675,6 +675,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4557612478138658708, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6856873666646292718, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: ticking
       value: 1
@@ -705,15 +709,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6904343445593620414, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6904343445593620414, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6904343445593620414, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6904343445593620414, guid: 7d1f3c6271ea98f41bd0ef6d3e4db619, type: 3}
       propertyPath: m_LocalRotation.w

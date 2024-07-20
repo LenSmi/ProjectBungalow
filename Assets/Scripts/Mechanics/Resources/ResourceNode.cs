@@ -90,7 +90,7 @@ public class ResourceNode : MonoBehaviour
 
         float angle = UnityEngine.Random.Range(0, Mathf.PI *2);
         
-        float angleRadian = Mathf.Rad2Deg * angle;
+        float angleRadian = Mathf.Rad2Deg / 2 * angle;
 
         var posX = Mathf.Cos(angleRadian);
         var posZ = Mathf.Sin(angleRadian);
