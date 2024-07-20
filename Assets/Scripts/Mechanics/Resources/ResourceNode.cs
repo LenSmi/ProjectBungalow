@@ -34,6 +34,7 @@ public class ResourceNode : MonoBehaviour
     public float launchEndPointExtra;
 
     private Vector3 originalMeshvalues;
+    private Transform playerTransform;
 
 
     private void Start()
@@ -78,27 +79,19 @@ public class ResourceNode : MonoBehaviour
 
     public void InstantiateResourceModule()
     {
-        Vector3 newPosition = RandomPostionCircle(transform,radius);
+        Vector3 newPosition = FindPlayerSubPosition();
         var module = Instantiate(resourceModule,transform.position,Quaternion.identity);
         Launch(module.transform, newPosition);
     }
 
-
-    private Vector3 RandomPostionCircle(Transform objectTransform, float radius)
+    private Vector3 FindPlayerSubPosition()
     {
-        Vector3 position;
-
-        float angle = UnityEngine.Random.Range(0, Mathf.PI *2);
+        if(playerTransform == null)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag(GameConstants.PlayerSubTag).GetComponent<Transform>();
+        }
         
-        float angleRadian = Mathf.Rad2Deg / 2 * angle;
-
-        var posX = Mathf.Cos(angleRadian);
-        var posZ = Mathf.Sin(angleRadian);
-
-        position.x = objectTransform.position.x + posX * radius;
-        position.z = objectTransform.position.z + posZ * radius;
-        position.y = objectTransform.position.y;
-
+        Vector3 position = playerTransform.position;
         return position;
     }
     
