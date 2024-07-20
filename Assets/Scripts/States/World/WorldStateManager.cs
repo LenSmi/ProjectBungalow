@@ -10,6 +10,7 @@ public enum EGameStates
     ScoreAttackSaloon,
     ScoreAttackStart,
     ScoreAttackEnd,
+    Debug
 }
 
 public class WorldStateManager : MonoBehaviour
@@ -21,9 +22,11 @@ public class WorldStateManager : MonoBehaviour
     public float underwaterTime;
     public SceneChangeManager sceneChangeManager;
     public GameObject stateObject;
+    public int debugInitialScene;
 
     public void Start()
     {
+
 #if UNITY_EDITOR
         TransitionToState(initialGameState);
 #endif
@@ -48,6 +51,9 @@ public class WorldStateManager : MonoBehaviour
                 break;
             case EGameStates.ScoreAttackEnd:
                 ChangeState<ScoreAttackEndState>();
+                break;
+            case EGameStates.Debug:
+                StartCoroutine(sceneChangeManager.IEDebugLoadGameScene(debugInitialScene));
                 break;
         }
     }

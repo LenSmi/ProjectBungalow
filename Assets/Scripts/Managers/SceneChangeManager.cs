@@ -72,6 +72,19 @@ public class SceneChangeManager : MonoBehaviour
    
     }
 
+    public IEnumerator IEDebugLoadGameScene(int index)
+    {
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName(GameScenes.Scene_God.ToString()))
+        {
+            Debug.Log("Active Scene is" + SceneManager.GetActiveScene().name);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+        }
+
+        
+        yield return SceneManager.LoadSceneAsync(index,LoadSceneMode.Additive);
+    }
+
 
 
 }
