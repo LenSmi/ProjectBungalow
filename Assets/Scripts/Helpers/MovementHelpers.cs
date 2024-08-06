@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public static class MovementHelpers
 {
 
-    public static void MoveObjectToward(Transform p1, Vector3 input, Vector3 destination, float speed, float rotationSpeed)
+    public static void MoveObjectToward(Transform p1, Vector3 input, Vector3 destination, float speed, float rotationSpeed, float speedMultiplier = 1)
     {
-        p1.position = Vector3.MoveTowards(p1.position, destination, speed * Time.fixedDeltaTime);
+        var speedM = speed * speedMultiplier;
+        var stepSpeed = speedM * Time.fixedDeltaTime;
+        //p1.position = Vector3.MoveTowards(p1.position, destination, stepSpeed);
+        p1.position = Vector3.Lerp(p1.position,destination, stepSpeed);
 
         Quaternion previousRotation = new Quaternion();
 
@@ -25,10 +29,9 @@ public static class MovementHelpers
             p1.rotation = Quaternion.Slerp(p1.rotation, rotationPoint, rotationSpeed * Time.deltaTime);
             previousRotation = p1.rotation;
         }
-       
-
 
     }
+
 
     public static void MoveObjectToward(Transform p1, Transform p2, Vector3 destination, float speed, float rotationSpeed, float stopThreshold)
     {
@@ -43,6 +46,19 @@ public static class MovementHelpers
             targetRot.z = 0;
             p1.rotation = Quaternion.RotateTowards(p1.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    public static void FocusOnObject(Transform originalTransform, Transform targetTransform, float rotationSpeed)
+    {
+
+        var relativePos = targetTransform.position - originalTransform.position;
+        var rotationPoint = Quaternion.LookRotation(relativePos, originalTransform.up);
+
+        rotationPoint.x = 0;
+        rotationPoint.z = 0;
+
+        originalTransform.rotation = Quaternion.Slerp(originalTransform.rotation, rotationPoint, rotationSpeed * Time.deltaTime);
+        
     }
 
 
