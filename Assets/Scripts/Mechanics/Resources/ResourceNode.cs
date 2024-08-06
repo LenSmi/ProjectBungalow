@@ -16,6 +16,7 @@ public class ResourceNode : MonoBehaviour
     [Header("References")]
     public ResourceType resourceType;
     public ResourceStates currentResourceState;
+    public ResourceNode resourceNode;
     public GameObject resourceModule;
     public Transform resourceTransform;
     public Transform mesh;
@@ -23,7 +24,7 @@ public class ResourceNode : MonoBehaviour
 
     [Header("Durability")]
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
     public float animDuration;
     public float durabilityLoss = 30;
 
@@ -45,6 +46,7 @@ public class ResourceNode : MonoBehaviour
     public void InitResource()
     {
         currentResourceState = ResourceStates.FULL;
+        resourceNode = this;
         originalMeshvalues = mesh.transform.localScale;
         obj_collider.enabled = true;
         currentHealth = maxHealth;

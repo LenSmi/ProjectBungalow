@@ -12,6 +12,10 @@ public class MiningManager : MonoBehaviour
     public bool canMine;
     public bool ticking;
 
+    public Transform playerTransform;
+    public SubMover mover;
+    public Transform targetNodeTransorm;
+    public ResourceNode resourceNode;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,13 @@ public class MiningManager : MonoBehaviour
     void Update()
     {
         MiningTick();
+
+        Debug.Log(CanMine());
+
+        if (CanMine() && Input.GetKeyDown(KeyCode.E))
+        {
+            Mine();
+        }
     }
 
     public void MiningTick()
@@ -49,5 +60,54 @@ public class MiningManager : MonoBehaviour
         ticking = true;
         canMine = false;
         timer = 0;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entered");
+        if (other.CompareTag(GameConstants.ResourceNodeTag))
+        {
+            if(resourceNode == null)
+            {
+                resourceNode = other.GetComponent<ResourceNode>().resourceNode;
+                targetNodeTransorm = resourceNode.resourceTransform;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(GameConstants.ResourceNodeTag))
+        {
+            Debug.Log("Exitted trigger");
+            resourceNode = null;
+            targetNodeTransorm = null;
+        }
+
+    }
+
+    public void Mine()
+    {
+
+        SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
+
+        if (resourceNode.currentHealth > 0)
+        {
+            resourceNode.LoseDurability();
+        }
+        else
+        {
+            resourceNode = null;
+            targetNodeTransorm = null;
+        }
+
+        Reset();
+    }
+
+    bool CanMine()
+    {
+        return canMine
+            && resourceNode != null
+            && Vector3.Distance(targetNodeTransorm.position, mover.subTransform.position) < mover.resourceStopDistance;
     }
 }

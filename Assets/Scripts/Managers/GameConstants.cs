@@ -42,4 +42,5 @@ public class GameConstants
        };
 
     public const string PlayerSubTag = "PlayerSub";
+    public const string ResourceNodeTag = "ResourceNode";
 }
