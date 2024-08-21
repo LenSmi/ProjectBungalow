@@ -15,6 +15,20 @@ public class MinigameManager : MonoBehaviour
     public int QuotaDeposit;
     public static Action AddToDepositQuota;
 
+    public bool IsGameActive = false;
+    private bool IsStormCoroutineRunning = false;
+
+    public float TimeUntilStorm;
+    public float ToxicityDamage;
+
+    private void Update()
+    {
+        if (IsGameActive)
+        {
+            TimeUntilStorm -= Time.deltaTime;
+        }
+    }
+
     public void CalculateTotalScore()
     {
 
@@ -29,18 +43,63 @@ public class MinigameManager : MonoBehaviour
     public void DepositQuota()
     {
         CurrentQuota += QuotaDeposit;
-        Debug.Log("Called");
+
         AddToDepositQuota?.Invoke();
 
-        if(CurrentQuota >= QuotaThreshold)
+        if(CheckOn())
         {
-            GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
             CurrentQuota = 0;
+            IsGameActive = false;
         }
         else
         {
             AddedQuota = 0;
         }
 
+    }
+
+    bool CheckOn() 
+    {
+        return CurrentQuota >= QuotaThreshold;
+    }
+    public IEnumerator StartGame()
+    {
+        Debug.Log("Starting Game");
+        IsGameActive = true;
+
+        while (IsGameActive)
+        {
+
+
+            if (IsStormActive() && !IsStormCoroutineRunning)
+            {
+                Debug.Log("Storm Active");
+                StartCoroutine(StartStorm());
+            }
+
+
+            yield return null;
+        }
+
+        StartCoroutine(EndGame());
+    }
+
+    IEnumerator EndGame() 
+    {
+        IsGameActive = false;
+        TimeUntilStorm = 0;
+        GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
+        return null; 
+    }  
+
+    IEnumerator StartStorm()
+    {
+        IsStormCoroutineRunning = true;
+        yield break;
+    }
+
+    public bool IsStormActive()
+    {
+        return TimeUntilStorm <= 0;
     }
 }

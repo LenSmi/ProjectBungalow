@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +16,8 @@ public enum GameScenes
 
 public class SceneChangeManager : MonoBehaviour
 {
+    public static Action IsLoadingDone;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +73,7 @@ public class SceneChangeManager : MonoBehaviour
             }
         }
 
-   
+        IsLoadingDone?.Invoke();
     }
 
     public IEnumerator IEDebugLoadGameScene(int index)

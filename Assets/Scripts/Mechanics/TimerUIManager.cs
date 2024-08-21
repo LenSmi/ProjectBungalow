@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerUIManager : MonoBehaviour
 {
 
-    private WorldStateManager worldState;
+    private MinigameManager minigameManager;
     private float timer;
     public Image fillImage;
     public bool isTicking = false;
@@ -14,31 +14,19 @@ public class TimerUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        worldState = GameManager.Instance().WorldStateManager();
-        timer = worldState.underwaterTime;
-        isTicking = true;
+        minigameManager = GameManager.Instance().MinigameManager();
+        fillImage.fillAmount = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isTicking)
+        if (!minigameManager.IsStormActive())
         {
-            timer -= Time.deltaTime;
-
-            float fraction = timer / worldState.underwaterTime;
-
-            fillImage.fillAmount = fraction;
+            fillImage.fillAmount = minigameManager.TimeUntilStorm / 100;
         }
 
     }
-
-    public void ResetTimer()
-    {
-        timer = worldState.underwaterTime;
-        isTicking = true;
-    }
-
 
 
 }
