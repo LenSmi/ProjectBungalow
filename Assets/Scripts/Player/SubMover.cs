@@ -51,7 +51,7 @@ public class SubMover : MonoBehaviour
            SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
         }
 
-        if (SubStateManager.currentSubState == GameConstants.PlayerStates.MINNING && !CheckInput() && miningManager.targetNodeTransorm != null && !CanDash())
+        if (SubStateManager.currentSubState == GameConstants.PlayerStates.MINNING && miningManager.targetNodeTransorm != null && !CanDash())
         {
             RotateSubTowards(miningManager.targetNodeTransorm);
         }
@@ -63,6 +63,13 @@ public class SubMover : MonoBehaviour
         if (SubStateManager.currentSubState == GameConstants.PlayerStates.MOVING)
         {
             Move();
+
+
+        }
+
+        if (!CanDash())
+        {
+            ReduceHeat();
         }
     }
 
@@ -89,7 +96,7 @@ public class SubMover : MonoBehaviour
         {
             Debug.Log("Moving");
             MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed);
-            ReduceHeat();
+
         }
         else
         {
@@ -98,6 +105,11 @@ public class SubMover : MonoBehaviour
         }
 
 
+    }
+
+    private void Dash() 
+    { 
+    
     }
 
     private void CalculateAngleOffset()

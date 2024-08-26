@@ -936,6 +936,10 @@ MonoBehaviour:
   mover: {fileID: 0}
   targetNodeTransorm: {fileID: 0}
   resourceNode: {fileID: 0}
+  physicsSphereOverlapRadius: 10
+  resourceNodeLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7948733642813009790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +952,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ff8345ae2fa0241881016728ad8ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxArmourAmount: 100
+  currentArmourAmount: 0
+  invincibilityInterval: 0
 --- !u!54 &1228462223593306836
 Rigidbody:
   m_ObjectHideFlags: 0
