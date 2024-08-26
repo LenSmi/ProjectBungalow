@@ -41,12 +41,14 @@ public class ResourceNode : MonoBehaviour
     private void Start()
     {
         InitResource();
+        obj_collider = GetComponent<Collider>();
     }
 
     public void InitResource()
     {
         currentResourceState = ResourceStates.FULL;
         resourceNode = this;
+        mesh.gameObject.SetActive(true);
         originalMeshvalues = mesh.transform.localScale;
         obj_collider.enabled = true;
         currentHealth = maxHealth;
@@ -54,9 +56,10 @@ public class ResourceNode : MonoBehaviour
 
     public void LoseDurability()
     {
+        currentHealth -= durabilityLoss;
+
         if (currentHealth > 0)
         {
-            currentHealth -= durabilityLoss;
             var finalFillAmount = currentHealth / 100;
             Vector3 newVector = new Vector3(finalFillAmount, finalFillAmount, finalFillAmount);
 
@@ -73,10 +76,8 @@ public class ResourceNode : MonoBehaviour
 
     private void HideNode()
     {
-        mesh.gameObject.SetActive(false);
-        mesh.transform.localScale = originalMeshvalues;
         obj_collider.enabled = false;
-
+        mesh.gameObject.SetActive(false);
     }
 
     public void InstantiateResourceModule()
