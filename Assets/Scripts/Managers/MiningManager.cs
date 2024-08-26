@@ -17,6 +17,9 @@ public class MiningManager : MonoBehaviour
     public Transform targetNodeTransorm;
     public ResourceNode resourceNode;
 
+    public float physicsSphereOverlapRadius = 10;
+    public LayerMask resourceNodeLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,9 @@ public class MiningManager : MonoBehaviour
 
         Debug.Log(CanMine());
 
-        if (CanMine() && Input.GetKeyDown(KeyCode.E))
+        FindClosestMinableNode();
+
+        if (CanMine())
         {
             Mine();
         }
@@ -62,30 +67,6 @@ public class MiningManager : MonoBehaviour
         timer = 0;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Entered");
-        if (other.CompareTag(GameConstants.ResourceNodeTag))
-        {
-            if(resourceNode == null)
-            {
-                resourceNode = other.GetComponent<ResourceNode>().resourceNode;
-                targetNodeTransorm = resourceNode.resourceTransform;
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(GameConstants.ResourceNodeTag))
-        {
-            Debug.Log("Exitted trigger");
-            resourceNode = null;
-            targetNodeTransorm = null;
-        }
-
-    }
-
     public void Mine()
     {
 
@@ -104,10 +85,43 @@ public class MiningManager : MonoBehaviour
         Reset();
     }
 
+    void FindClosestMinableNode()
+    {
+
+        Collider[] hitColliders = Physics.OverlapSphere(playerTransform.position, physicsSphereOverlapRadius, resourceNodeLayer);
+        float previousClosestNode = Mathf.Infinity;
+
+        foreach (Collider collider in hitColliders)
+        {
+            float distanceToNode = Vector3.Distance(transform.position, collider.transform.position);
+
+            if (distanceToNode < previousClosestNode) 
+            {
+                previousClosestNode = distanceToNode;
+                ResourceNode node = collider.GetComponent<ResourceNode>();
+
+                if (node != null)
+                {
+                    resourceNode = node.resourceNode;
+                    targetNodeTransorm = node.resourceTransform;
+                }
+
+            }
+        }
+    }
+
     bool CanMine()
     {
         return canMine
             && resourceNode != null
-            && Vector3.Distance(targetNodeTransorm.position, mover.subTransform.position) < mover.resourceStopDistance;
+            && Vector3.Distance(targetNodeTransorm.position, mover.subTransform.position) < mover.resourceStopDistance
+             && Input.GetKeyDown(KeyCode.E);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, physicsSphereOverlapRadius);
+    }
+
 }
