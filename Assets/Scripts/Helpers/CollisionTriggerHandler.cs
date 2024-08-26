@@ -46,6 +46,10 @@ public class CollisionTriggerHandler : MonoBehaviour
 
         switch (interactionInput)
         {
+            case InteractionResult.END_SCORE_ATTACK:
+                MinigameManager manager = GameManager.Instance().MinigameManager();
+                StartCoroutine(manager.EndGame());
+                break;
             case InteractionResult.LOAD_SCORE_ATTACK_SALLOON:
                 worldStateManager.TransitionToState(EGameStates.ScoreAttackSaloon);
                 break;
