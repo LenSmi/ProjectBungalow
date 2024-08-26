@@ -489,12 +489,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b74bff36f505a44196bb43ed2388718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGameState: 4
+  initialGameState: 3
   gameStates: 0
   currentGameState: {fileID: 0}
   sceneChangeManager: {fileID: 1247500165}
   stateObject: {fileID: 380938618}
-  debugInitialScene: 5
+  debugInitialScene: 4
 --- !u!1 &669969851
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +784,7 @@ MonoBehaviour:
   QuotaThreshold: 100
   QuotaDeposit: 0
   IsGameActive: 0
-  TimeUntilStorm: 10
+  TimeUntilStorm: 50
   ToxicityDamage: 2
 --- !u!1 &1064844450
 GameObject:

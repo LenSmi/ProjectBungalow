@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 
 public enum GameScenes
 {
+    //These need to have the same name as the scene file
     Scene_God,
     Scene_Hub,
     Scene_TrenchArea1,
     Scene_Score_Attack_Saloon,
-    Scene_Score_Attack
+    Scene_Score_Attack,
+    Scene_Score_Attack_ScoreScreen
 }
 
 public class SceneChangeManager : MonoBehaviour
@@ -49,9 +51,17 @@ public class SceneChangeManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(GameScenes.Scene_God.ToString()))
         {
-            Debug.Log("Active Scene is" + SceneManager.GetActiveScene().name);
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-           
+            //Debug.Log("Active Scene is" + SceneManager.GetActiveScene().name);
+
+            AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+            while (!asyncLoad.isDone)
+            {
+                // Here you can communicate the progress to the player
+                // e.g., a loading bar
+                yield return null;
+            }
+
         }
 
         yield return StartCoroutine(LoadGameSceneAsync(sceneToLoad));

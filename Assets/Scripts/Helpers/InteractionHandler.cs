@@ -7,6 +7,7 @@ public enum InteractionResult
     LOADHUB,
     LOAD_TRENCHAREA_1,
     LOAD_SCORE_ATTACK,
+    END_SCORE_ATTACK,
     LOAD_SCORE_ATTACK_SALLOON
 }
 

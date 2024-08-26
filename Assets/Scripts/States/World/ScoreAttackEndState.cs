@@ -11,8 +11,7 @@ public class ScoreAttackEndState : GameState
 
     public override void EnterGamestate()
     {
-        //gameManager.UIManager().scoreCalc.SetActive(true);
-        GameManager.Instance().UIManager().scoreCalc.SetActive(true);
+        StartCoroutine(sceneChangeManager.IELoadGameScene(GameScenes.Scene_Score_Attack_ScoreScreen));
     }
 
     public override void ExitGamestate()
