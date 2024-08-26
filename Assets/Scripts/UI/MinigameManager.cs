@@ -14,6 +14,8 @@ public class MinigameManager : MonoBehaviour
     public int QuotaThreshold;
     public int QuotaDeposit;
     public static Action AddToDepositQuota;
+    public static Action QuotaReached;
+    public static Action StormStarted;
 
     public bool IsGameActive = false;
     private bool IsStormCoroutineRunning = false;
@@ -49,7 +51,7 @@ public class MinigameManager : MonoBehaviour
         if(CheckOn())
         {
             CurrentQuota = 0;
-            IsGameActive = false;
+            QuotaReached?.Invoke();
         }
         else
         {
@@ -84,7 +86,7 @@ public class MinigameManager : MonoBehaviour
         StartCoroutine(EndGame());
     }
 
-    IEnumerator EndGame() 
+    public IEnumerator EndGame() 
     {
         IsGameActive = false;
         TimeUntilStorm = 0;
@@ -94,6 +96,7 @@ public class MinigameManager : MonoBehaviour
 
     IEnumerator StartStorm()
     {
+        StormStarted?.Invoke();
         IsStormCoroutineRunning = true;
         yield break;
     }

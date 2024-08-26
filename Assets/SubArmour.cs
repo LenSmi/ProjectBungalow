@@ -43,6 +43,12 @@ public class SubArmour : MonoBehaviour
     {
 
         currentArmourAmount -= damage;
+
         LoseArmourAction?.Invoke();
+
+        if (currentArmourAmount <= 0)
+        {
+            StartCoroutine(GameManager.Instance().MinigameManager().EndGame());
+        }
     }
 }
