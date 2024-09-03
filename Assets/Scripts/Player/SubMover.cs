@@ -43,7 +43,6 @@ public class SubMover : MonoBehaviour
     private float vertical;
     public Vector3 input;
 
-
     private void Update()
     {
         if (CheckInput())
@@ -63,8 +62,6 @@ public class SubMover : MonoBehaviour
         if (SubStateManager.currentSubState == GameConstants.PlayerStates.MOVING)
         {
             Move();
-
-
         }
 
         if (!CanDash())
@@ -73,22 +70,18 @@ public class SubMover : MonoBehaviour
         }
     }
 
-
     public void Move()
     {
 
         horizontal = Input.GetAxis(horizontalInput);
         vertical = Input.GetAxis(verticalInput);
 
-        //Current Position
         Vector3 position = transform.position;
 
-        //Input and movement Vector
         CalculateAngleOffset();
         input = (horizontal * angleX + vertical * angleZ).normalized;
         Vector3 movement = input * movementSpeed * Time.deltaTime;
 
-        //Desired Position
         Vector3 newPos = position + movement;
         Vector3 targetPos = new Vector3(newPos.x, transform.position.y, newPos.z);
 
@@ -96,7 +89,6 @@ public class SubMover : MonoBehaviour
         {
             Debug.Log("Moving");
             MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed);
-
         }
         else
         {
@@ -105,11 +97,6 @@ public class SubMover : MonoBehaviour
         }
 
 
-    }
-
-    private void Dash() 
-    { 
-    
     }
 
     private void CalculateAngleOffset()
@@ -123,7 +110,6 @@ public class SubMover : MonoBehaviour
         angleX.z = Mathf.Cos(angleOffsetX);
         angleX.Normalize();
     }
-
     public void RotateSubTowards(Transform target)
     {
         MovementHelpers.FocusOnObject(transform,target,rotSpeed);
@@ -141,7 +127,6 @@ public class SubMover : MonoBehaviour
             return false;
         }
     }
-
     public bool CanDash()
     {
         ///1. Check for input
