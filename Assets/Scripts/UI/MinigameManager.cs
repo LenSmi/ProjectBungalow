@@ -23,6 +23,14 @@ public class MinigameManager : MonoBehaviour
     public float TimeUntilStorm;
     public float ToxicityDamage;
 
+    private int _startingQuota;
+    private float _timeUntilStorm;
+
+    private void Start()
+    {
+        Init();
+    }
+
     private void Update()
     {
         if (IsGameActive)
@@ -31,11 +39,18 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public void CalculateTotalScore()
+    private void Init()
     {
+        _timeUntilStorm = TimeUntilStorm;
+        _startingQuota = StartingQuota;
 
     }
 
+    private void Reset()
+    {
+        TimeUntilStorm = _timeUntilStorm;
+        StartingQuota = _startingQuota;
+    }
     public void UpdateQuota(int quantity)
     {
         AddedQuota += quantity;
@@ -64,6 +79,7 @@ public class MinigameManager : MonoBehaviour
     {
         return CurrentQuota >= QuotaThreshold;
     }
+
     public IEnumerator StartGame()
     {
         Debug.Log("Starting Game");
@@ -86,11 +102,18 @@ public class MinigameManager : MonoBehaviour
         StartCoroutine(EndGame());
     }
 
+    public bool IsStormActive()
+    {
+        return TimeUntilStorm <= 0;
+    }
+
     public IEnumerator EndGame() 
     {
         IsGameActive = false;
+        IsStormCoroutineRunning = false;
         TimeUntilStorm = 0;
         GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
+        Reset();
         return null; 
     }  
 
@@ -99,10 +122,5 @@ public class MinigameManager : MonoBehaviour
         StormStarted?.Invoke();
         IsStormCoroutineRunning = true;
         yield break;
-    }
-
-    public bool IsStormActive()
-    {
-        return TimeUntilStorm <= 0;
     }
 }
