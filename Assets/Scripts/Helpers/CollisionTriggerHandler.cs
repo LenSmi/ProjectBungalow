@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class CollisionTriggerHandler : MonoBehaviour
 {
-    public Collider obj_collider;
-    public InteractionResult interactionResult;
-    private bool isColliding = false;
-    private SceneChangeManager sceneChangeManager;
-    private WorldStateManager worldStateManager;
+    [SerializeField]
+    private Collider ObjectCollider;
+    public InteractionResult InteractionResult;
+    private bool _isColliding = false;
+    private SceneChangeManager _sceneChangeManager;
+    private WorldStateManager _worldStateManager;
 
     private void Start()
     {
-        sceneChangeManager = GameManager.Instance().SceneChangeManager();
-        worldStateManager = GameManager.Instance().WorldStateManager();
+        _sceneChangeManager = GameManager.Instance().SceneChangeManager();
+        _worldStateManager = GameManager.Instance().WorldStateManager();
     }
 
 
@@ -21,8 +22,8 @@ public class CollisionTriggerHandler : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
         {
-            isColliding = true;
-            Interaction(interactionResult);
+            _isColliding = true;
+            Interaction(InteractionResult);
         }
 
     }
@@ -31,7 +32,7 @@ public class CollisionTriggerHandler : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
         {
-            isColliding = false;
+            _isColliding = false;
         }
     }
 
@@ -39,9 +40,9 @@ public class CollisionTriggerHandler : MonoBehaviour
 
     public void Interaction(InteractionResult interactionInput)
     {
-        if (sceneChangeManager == null)
+        if (_sceneChangeManager == null)
         {
-            sceneChangeManager = GameManager.Instance().SceneChangeManager();
+            _sceneChangeManager = GameManager.Instance().SceneChangeManager();
         }
 
         switch (interactionInput)
@@ -51,19 +52,19 @@ public class CollisionTriggerHandler : MonoBehaviour
                 StartCoroutine(manager.EndGame());
                 break;
             case InteractionResult.LOAD_SCORE_ATTACK_SALLOON:
-                worldStateManager.TransitionToState(EGameStates.ScoreAttackSaloon);
+                _worldStateManager.TransitionToState(EGameStates.ScoreAttackSaloon);
                 break;
             case InteractionResult.LOADHUB:
                 Debug.Log("Loading Hub");
-                worldStateManager.TransitionToState(EGameStates.Hub);
+                _worldStateManager.TransitionToState(EGameStates.Hub);
                 break;
             case InteractionResult.LOAD_TRENCHAREA_1:
                 Debug.Log("Loading Trench Area 1");
-                worldStateManager.TransitionToState(EGameStates.Trench);
+                _worldStateManager.TransitionToState(EGameStates.Trench);
                 break;
             case InteractionResult.LOAD_SCORE_ATTACK:
                 Debug.Log("Loading Score Attack");
-                worldStateManager.TransitionToState(EGameStates.ScoreAttackStart);
+                _worldStateManager.TransitionToState(EGameStates.ScoreAttackStart);
                 break;
         }
     }

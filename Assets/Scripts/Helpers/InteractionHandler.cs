@@ -13,22 +13,22 @@ public enum InteractionResult
 
 public class InteractionHandler : MonoBehaviour
 {
-    public KeyCode input;
-    public InteractionResult interactionResult;
-    public Collider obj_collider;
-    private bool isColliding = false;
-    private SceneChangeManager sceneChangeManager;
+    public KeyCode KeyInput;
+    public InteractionResult InteractionResult;
+    public Collider ObjectCollider;
+    private bool _isColliding = false;
+    private SceneChangeManager _sceneChangeManager;
 
     private void Start()
     {
-        sceneChangeManager = GameManager.Instance().SceneChangeManager();
+        _sceneChangeManager = GameManager.Instance().SceneChangeManager();
     }
 
     public void Update()
     {
-        if(isColliding && Input.GetKeyDown(input))
+        if(_isColliding && Input.GetKeyDown(KeyInput))
         {
-            Interaction(interactionResult);
+            Interaction(InteractionResult);
         }
     }
 
@@ -36,7 +36,7 @@ public class InteractionHandler : MonoBehaviour
     {
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
         {
-            isColliding = true;
+            _isColliding = true;
         }
 
     }
@@ -45,7 +45,7 @@ public class InteractionHandler : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
         {
-            isColliding = false;
+            _isColliding = false;
         }
     }
 
@@ -53,9 +53,9 @@ public class InteractionHandler : MonoBehaviour
 
     public void Interaction(InteractionResult interactionInput)
     {
-        if(sceneChangeManager == null)
+        if(_sceneChangeManager == null)
         {
-            sceneChangeManager = GameManager.Instance().SceneChangeManager();
+            _sceneChangeManager = GameManager.Instance().SceneChangeManager();
         }
 
         switch (interactionInput)
