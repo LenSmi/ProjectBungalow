@@ -23,12 +23,6 @@ public class CargoManager : MonoBehaviour
     public CargoData GlobalCargoData;
     public CargoData DepositCargoData;
     public CargoData SubCargoData;
-    private Dictionary<ResourceType, int> cargoInventory = new Dictionary<ResourceType, int>() { };
-    private Dictionary<ResourceType, int> depositInventory = new Dictionary<ResourceType, int>() { };
-    private Dictionary<ResourceType, int> subCargoInventory = new Dictionary<ResourceType, int>() { };
-    public Dictionary<ResourceType, int> CargoInventory { get => cargoInventory; set => cargoInventory = value; }
-    public Dictionary<ResourceType, int> DepositInventory { get => depositInventory; set => depositInventory = value; }
-    public Dictionary<ResourceType, int> SubCargoInventory { get => subCargoInventory; set => subCargoInventory = value; }
 
     public int maxCargo;
     public int currentCargo;
@@ -83,12 +77,12 @@ public class CargoManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("Cargo inventory after adding resources:");
-            foreach (var entry in subCargoInventory)
+            foreach (var entry in SubCargoData.Resources)
             {
                 Debug.Log($"Junk in subinventory{entry.Key}: {entry.Value} units");
             }
 
-            foreach (var entry in depositInventory)
+            foreach (var entry in DepositCargoData.Resources)
             {
                 Debug.Log($"Junk in deposit{entry.Key}: {entry.Value} units");
             }
