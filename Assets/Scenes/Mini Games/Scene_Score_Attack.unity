@@ -20921,6 +20921,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2033194126}
     - target: {fileID: 5738568085583983742, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: SubMover
+      value: 
+      objectReference: {fileID: 2033194126}
+    - target: {fileID: 5738568085583983742, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: PlayerTransform
+      value: 
+      objectReference: {fileID: 2033194128}
+    - target: {fileID: 5738568085583983742, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 2033194128}
