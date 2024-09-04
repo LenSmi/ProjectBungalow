@@ -30,7 +30,7 @@ public class CargoUIManager : MonoBehaviour
 
     private void UpdateReduceFillUi()
     {
-        UIHelper.LerpReduceFillImage(fillImage, cargo.SubCargoInventory.Values.Sum(), cargo.maxCargo, lerpAnimationNumber);
+        UIHelper.LerpReduceFillImage(fillImage, cargo.SubCargoData.Resources.Values.Sum(), cargo.maxCargo, lerpAnimationNumber);
     }
 
 }
