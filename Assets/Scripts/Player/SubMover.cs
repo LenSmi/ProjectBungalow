@@ -50,9 +50,9 @@ public class SubMover : MonoBehaviour
            SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
         }
 
-        if (SubStateManager.currentSubState == GameConstants.PlayerStates.MINNING && miningManager.targetNodeTransorm != null && !CanDash())
+        if (SubStateManager.currentSubState == GameConstants.PlayerStates.MINNING && miningManager.TargetNodeTransorm != null && !CanDash())
         {
-            RotateSubTowards(miningManager.targetNodeTransorm);
+            RotateSubTowards(miningManager.TargetNodeTransorm);
         }
 
     }

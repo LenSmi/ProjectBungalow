@@ -5,17 +5,17 @@ using UnityEngine;
 public class MiningManager : MonoBehaviour
 {
 
-    public float durabilityLoss = 30;
-    public float miningTickInterval;
-    public float timer = 0.0f;
+    public float DurabilityLoss = 30;
+    public float MiningTickInterval;
+    public float Timer = 0.0f;
 
-    public bool canMine;
-    public bool ticking;
+    public bool CanBeMined;
+    public bool Ticking;
 
-    public Transform playerTransform;
-    public SubMover mover;
-    public Transform targetNodeTransorm;
-    public ResourceNode resourceNode;
+    public Transform PlayerTransform;
+    public SubMover SubMover;
+    public Transform TargetNodeTransorm;
+    public ResourceNode ResourceNode;
 
     public float physicsSphereOverlapRadius = 10;
     public LayerMask resourceNodeLayer;
@@ -23,8 +23,8 @@ public class MiningManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canMine = true;
-        ticking = true;
+        CanBeMined = true;
+        Ticking = true;
     }
 
     // Update is called once per frame
@@ -45,15 +45,15 @@ public class MiningManager : MonoBehaviour
     public void MiningTick()
     {
 
-        if (ticking)
+        if (Ticking)
         {
 
-            timer += Time.deltaTime;
+            Timer += Time.deltaTime;
 
-            if (timer > miningTickInterval)
+            if (Timer > MiningTickInterval)
             {
-                ticking = false;
-                canMine = true;
+                Ticking = false;
+                CanBeMined = true;
             }
 
         }
@@ -62,9 +62,9 @@ public class MiningManager : MonoBehaviour
 
     public void Reset()
     {
-        ticking = true;
-        canMine = false;
-        timer = 0;
+        Ticking = true;
+        CanBeMined = false;
+        Timer = 0;
     }
 
     public void Mine()
@@ -72,14 +72,14 @@ public class MiningManager : MonoBehaviour
 
         SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
 
-        if (resourceNode.currentHealth > 0)
+        if (ResourceNode.currentHealth > 0)
         {
-            resourceNode.LoseDurability();
+            ResourceNode.LoseDurability();
         }
         else
         {
-            resourceNode = null;
-            targetNodeTransorm = null;
+            ResourceNode = null;
+            TargetNodeTransorm = null;
         }
 
         Reset();
@@ -88,7 +88,7 @@ public class MiningManager : MonoBehaviour
     void FindClosestMinableNode()
     {
 
-        Collider[] hitColliders = Physics.OverlapSphere(playerTransform.position, physicsSphereOverlapRadius, resourceNodeLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(PlayerTransform.position, physicsSphereOverlapRadius, resourceNodeLayer);
         float previousClosestNode = Mathf.Infinity;
 
         foreach (Collider collider in hitColliders)
@@ -102,8 +102,8 @@ public class MiningManager : MonoBehaviour
 
                 if (node != null)
                 {
-                    resourceNode = node.resourceNode;
-                    targetNodeTransorm = node.resourceTransform;
+                    ResourceNode = node.resourceNode;
+                    TargetNodeTransorm = node.resourceTransform;
                 }
 
             }
@@ -112,9 +112,9 @@ public class MiningManager : MonoBehaviour
 
     bool CanMine()
     {
-        return canMine
-            && resourceNode != null
-            && Vector3.Distance(targetNodeTransorm.position, mover.subTransform.position) < mover.resourceStopDistance
+        return CanBeMined
+            && ResourceNode != null
+            && Vector3.Distance(TargetNodeTransorm.position, SubMover.subTransform.position) < SubMover.resourceStopDistance
              && Input.GetKeyDown(KeyCode.E);
     }
 
