@@ -33,9 +33,10 @@ public class SceneChangeManager : MonoBehaviour
         {
             SceneManager.SetActiveScene(scene);
         }
-        catch
+        catch(Exception ex)
         {
-            Debug.LogWarning("Could not set scene as active: " + SceneManager.GetActiveScene().ToString());
+            Debug.LogWarning("Could not set scene as active: " + SceneManager.GetActiveScene().ToString() + ", Exception: " + ex);
+            throw;
         }
 
 
