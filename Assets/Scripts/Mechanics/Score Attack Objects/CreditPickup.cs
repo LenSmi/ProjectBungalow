@@ -6,14 +6,14 @@ using DG.Tweening;
 public class CoinPickup : MonoBehaviour, IPickup
 {
     [Header("References")]
-    public ResourceType resourceType;
+    public ResourceItemData itemData;
     private GameObject playerSub;
 
     [Header("Variables")]
     public int ResourceQuantity;
     public float PickUpDistance;
     public float MovementSpeed;
-    public float ScoreValue;
+    public int AddedQuantity;
     public void FixedUpdate()
     {
         if (Vector3.Distance(transform.position, playerSub.transform.position) < PickUpDistance)
@@ -41,10 +41,10 @@ public class CoinPickup : MonoBehaviour, IPickup
 
     public void OnPickup()
     {
-        Cargo cargo = GameManager.Instance().cargo();
+        CargoManager cargo = GameManager.Instance().Cargo();
         if (!cargo.IsCargoFull())
         {
-            cargo.AddCargo(resourceType, ResourceQuantity);
+            cargo.AddCargo(itemData, AddedQuantity);
             Destroy(gameObject);
         }
     }

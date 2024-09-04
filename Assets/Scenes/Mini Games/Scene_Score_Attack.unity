@@ -13918,9 +13918,33 @@ PrefabInstance:
       value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
+      propertyPath: _lerpTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
+      propertyPath: _offset.x
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
+      propertyPath: _offset.y
+      value: 7.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
+      propertyPath: _offset.z
+      value: -4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 2033194128}
+    - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
+      propertyPath: _playerTarget
+      value: 
+      objectReference: {fileID: 2033194128}
+    - target: {fileID: 2574430956463779445, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
+      propertyPath: _forwardOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6182875168732333421, guid: 2d5bdbcb0b496c74fb7bf59e9efa7937, type: 3}
       propertyPath: subMover
       value: 

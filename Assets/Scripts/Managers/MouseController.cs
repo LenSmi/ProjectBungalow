@@ -32,13 +32,13 @@ public class MouseController : MonoBehaviour
 
     public Vector3 movementPoint;
 
-    private Cargo cargo;
+    private CargoManager _cargo;
 
     // Start is called before the first frame update
     void Start()
     {
         subMover = FindObjectOfType<SubMover>();
-        cargo = GameManager.Instance().cargo();
+        _cargo = GameManager.Instance().Cargo();
         _mainCamera = Camera.main;
 
         if (_mainCamera == null) { Debug.LogWarning("No Main Camera found", gameObject); }
@@ -92,8 +92,8 @@ public class MouseController : MonoBehaviour
 
                     if (Vector3.Distance(hitObject.transform.position, 
                         subMover.subTransform.position) < subMover.stopDistance 
-                        && miningManager.canMine
-                        && cargo.currentCargo != cargo.maxCargo)
+                        && miningManager.CanBeMined
+                        && _cargo.currentCargo != _cargo.maxCargo)
                     {
 
                         SubStateManager.ChangePlayerState(GameConstants.PlayerStates.MINNING);
@@ -106,19 +106,19 @@ public class MouseController : MonoBehaviour
                 case "Deposit":
                     Debug.Log("HitDeposit");
 
-                    if(cargo == null)
+                    if(_cargo == null)
                     {
-                        cargo = GameManager.Instance().cargo();
+                        _cargo = GameManager.Instance().Cargo();
                     }
 
-                    cargo.AddCargoToDeposit();
+                    _cargo.AddCargoToDeposit();
 
                     break;
                 case "DepositSCA":
 
-                    if (cargo == null)
+                    if (_cargo == null)
                     {
-                        cargo = GameManager.Instance().cargo();
+                        _cargo = GameManager.Instance().Cargo();
                     }
 
                     MinigameManager manager = GameManager.Instance().MinigameManager();
@@ -128,7 +128,7 @@ public class MouseController : MonoBehaviour
                         manager.DepositQuota();
                     }
 
-                    cargo.AddCargoToDeposit();
+                    _cargo.AddCargoToDeposit();
                     break;
             }
 

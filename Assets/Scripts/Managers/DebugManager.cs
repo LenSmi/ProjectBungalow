@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class DebugManager : MonoBehaviour
 {
-    public GUIStyle customStyle;
+    public GUIStyle CustomStyle;
 
-    private MouseController mouseController;
-    private Cargo cargo;
+    private MouseController _mouseController;
+    private CargoManager _cargo;
 
 
     private void Start()
     {
-        mouseController = FindObjectOfType<MouseController>();
-        cargo = GameManager.Instance().cargo();
+        //mouseController = FindObjectOfType<MouseController>();
+        _cargo = GameManager.Instance().Cargo();
     }
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 200, 200),(1.0f / Time.smoothDeltaTime).ToString("F1"), customStyle);
-        GUI.Label(new Rect(0, 30, 200, 200), mouseController.lastLayerhit, customStyle);
-        GUI.Label(new Rect(0, 60, 200, 200), SubStateManager.currentSubState.ToString(), customStyle);
+        GUI.Label(new Rect(0, 0, 200, 200),(1.0f / Time.smoothDeltaTime).ToString("F1"), CustomStyle);
+        //GUI.Label(new Rect(0, 30, 200, 200), mouseController.lastLayerhit, customStyle);
+        GUI.Label(new Rect(0, 60, 200, 200), SubStateManager.currentSubState.ToString(), CustomStyle);
 
     }
 

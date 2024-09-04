@@ -17,15 +17,18 @@ public enum ResourceType
 /// It has the current cargo and also the cargo that is housed on land
 /// We want to be able to add and remove cargo from these containers.
 /// </summary>
-public class Cargo : MonoBehaviour
+public class CargoManager : MonoBehaviour
 {
+
+    public CargoData GlobalCargoData;
+    public CargoData DepositCargoData;
+    public CargoData SubCargoData;
     private Dictionary<ResourceType, int> cargoInventory = new Dictionary<ResourceType, int>() { };
     private Dictionary<ResourceType, int> depositInventory = new Dictionary<ResourceType, int>() { };
     private Dictionary<ResourceType, int> subCargoInventory = new Dictionary<ResourceType, int>() { };
     public Dictionary<ResourceType, int> CargoInventory { get => cargoInventory; set => cargoInventory = value; }
     public Dictionary<ResourceType, int> DepositInventory { get => depositInventory; set => depositInventory = value; }
     public Dictionary<ResourceType, int> SubCargoInventory { get => subCargoInventory; set => subCargoInventory = value; }
-
 
     public int maxCargo;
     public int currentCargo;
@@ -36,23 +39,13 @@ public class Cargo : MonoBehaviour
 
 
 
-    public void AddCargo(ResourceType type, int addedQuantity)
+    public void AddCargo(ResourceItemData itemData, int quantity)
     {
+        int cargoCheck = currentCargo < maxCargo ? quantity : 0;
 
-        var cargoCheck = currentCargo < maxCargo ? addedQuantity : 0;
-
-        if (!SubCargoInventory.ContainsKey(type))
-        {
-            SubCargoInventory.Add(type, addedQuantity);
-            currentCargo += cargoCheck;
-        }
-        else 
-        {
-            SubCargoInventory[type] += cargoCheck;
-            currentCargo += cargoCheck;
-        }
-
-        previouslyAddedAmount = addedQuantity;
+        SubCargoData.AddResource(itemData, quantity);
+        currentCargo += cargoCheck;
+        previouslyAddedAmount = quantity;
 
         AddItemsToCargo?.Invoke();
     }
@@ -60,30 +53,11 @@ public class Cargo : MonoBehaviour
     public void AddCargoToDeposit()
     {
 
-        foreach (var key in SubCargoInventory.ToList())
+        foreach (var resource in SubCargoData.Resources.ToList())
         {
-            int value = key.Value;
-
-            if (!DepositInventory.ContainsKey(key.Key))
-            {
-                try
-                {
-                    DepositInventory.Add(key.Key, value);
-                }
-                catch (ArgumentException) 
-                {
-                    Debug.LogError("Could not add to deposit");
-                }
-               
-
-            }
-            else
-            {
-                DepositInventory[key.Key] += value;
-            }
-
-            currentCargo -= key.Value;
-            SubCargoInventory[key.Key] -= value;
+            DepositCargoData.AddResource(resource.Key, resource.Value);
+            currentCargo -= resource.Value;
+            SubCargoData.RemoveResource(resource.Key, resource.Value);
         }
 
         AddItemsToDeposit?.Invoke();
@@ -91,37 +65,17 @@ public class Cargo : MonoBehaviour
 
     public void AddDepositToCargoInventory()
     {
-
-        foreach (var key in DepositInventory.ToList())
+        foreach (var resource in DepositCargoData.Resources.ToList())
         {
-            int value = key.Value;
-
-            if (!CargoInventory.ContainsKey(key.Key))
-            {
-                try
-                {
-                    CargoInventory.Add(key.Key, value);
-                }
-                catch (ArgumentException)
-                {
-                    Debug.LogError("Could not add to deposit");
-                }
-
-
-            }
-            else
-            {
-                CargoInventory[key.Key] += value;
-            }
-
-            DepositInventory[key.Key] -= value;
+            GlobalCargoData.AddResource(resource.Key, resource.Value);
+            DepositCargoData.RemoveResource(resource.Key, resource.Value);
         }
     }
 
     public bool IsCargoFull()
     {
-        var isCargoFull = currentCargo < maxCargo ? false : true;
-        return isCargoFull;
+        return currentCargo >= maxCargo;
+
     }
 
     public void Update()

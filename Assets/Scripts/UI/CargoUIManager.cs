@@ -7,7 +7,7 @@ using System.Linq;
 public class CargoUIManager : MonoBehaviour
 {
 
-    private Cargo cargo;
+    private CargoManager cargo;
     public Image fillImage;
 
     private float currentImageFillAmount;
@@ -17,10 +17,10 @@ public class CargoUIManager : MonoBehaviour
     void Start()
     {
         currentImageFillAmount = fillImage.fillAmount;
-        cargo = GameManager.Instance().cargo();
+        cargo = GameManager.Instance().Cargo();
 
-        Cargo.AddItemsToCargo += UpdateAddFillUi;
-        Cargo.AddItemsToDeposit += UpdateReduceFillUi;
+        CargoManager.AddItemsToCargo += UpdateAddFillUi;
+        CargoManager.AddItemsToDeposit += UpdateReduceFillUi;
     }
 
     private void UpdateAddFillUi()

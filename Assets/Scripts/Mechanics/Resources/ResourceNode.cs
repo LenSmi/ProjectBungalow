@@ -14,7 +14,6 @@ public enum ResourceStates
 public class ResourceNode : MonoBehaviour
 {
     [Header("References")]
-    public ResourceType resourceType;
     public ResourceStates currentResourceState;
     public ResourceNode resourceNode;
     public GameObject resourceModule;

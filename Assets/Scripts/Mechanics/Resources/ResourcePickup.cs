@@ -6,7 +6,7 @@ using DG.Tweening;
 public class ResourcePickup : MonoBehaviour, IPickup
 {
     [Header("References")]
-    public ResourceType resourceType;
+    public ResourceItemData resourceItemData;
     public Transform objTransform;
     public GameObject resourceModule;
     private GameObject playerSub;
@@ -15,7 +15,6 @@ public class ResourcePickup : MonoBehaviour, IPickup
     public int ResourceQuantity;
     public float PickUpDistance;
     public float MovementSpeed;
-    public int ScoreAttackValue;
 
     private void Start()
     {
@@ -60,11 +59,11 @@ public class ResourcePickup : MonoBehaviour, IPickup
         MinigameManager manager = GameManager.Instance().MinigameManager();
         manager.UpdateQuota(ResourceQuantity);
 
-        Cargo cargo = GameManager.Instance().cargo();
+        CargoManager cargo = GameManager.Instance().Cargo();
 
         if (!cargo.IsCargoFull())
         {
-            cargo.AddCargo(resourceType, ResourceQuantity);
+            cargo.AddCargo(resourceItemData, ResourceQuantity);
             Destroy(gameObject);
         }
     }

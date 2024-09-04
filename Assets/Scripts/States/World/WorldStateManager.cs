@@ -19,7 +19,6 @@ public class WorldStateManager : MonoBehaviour
     [HideInInspector]
     public EGameStates gameStates;
     public GameState currentGameState;
-    public float underwaterTime;
     public SceneChangeManager sceneChangeManager;
     public GameObject stateObject;
     public int debugInitialScene;
@@ -56,6 +55,7 @@ public class WorldStateManager : MonoBehaviour
                 StartCoroutine(sceneChangeManager.IEDebugLoadGameScene(debugInitialScene));
                 break;
         }
+
     }
 
     public void ChangeState<T>() where T: GameState

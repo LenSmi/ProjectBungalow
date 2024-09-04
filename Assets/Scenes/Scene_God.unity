@@ -489,12 +489,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b74bff36f505a44196bb43ed2388718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGameState: 3
+  initialGameState: 4
   gameStates: 0
   currentGameState: {fileID: 0}
   sceneChangeManager: {fileID: 1247500165}
   stateObject: {fileID: 380938618}
-  debugInitialScene: 4
+  debugInitialScene: 3
 --- !u!1 &669969851
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,8 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501e5c16af8957a459531d7df89fc594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customStyle:
-    m_Name: Debug Menu
+  CustomStyle:
+    m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []
@@ -597,8 +597,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 40
+    m_Font: {fileID: 0}
+    m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 0
@@ -654,6 +654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272ec7673a7a19047a6f87ffd8c71fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalCargoData: {fileID: 11400000, guid: 583f06104a88c44479e30f6e3d3a0ad1, type: 2}
+  DepositCargoData: {fileID: 11400000, guid: a382b697a2621664e899527db1c2921e, type: 2}
+  SubCargoData: {fileID: 11400000, guid: 384e1419dd30db743a1c4a0c958049b4, type: 2}
   maxCargo: 50
   currentCargo: 0
   previouslyAddedAmount: 0
