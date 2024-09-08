@@ -27,7 +27,11 @@ public class PlayerMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (_mouseController == null) { Debug.LogWarning("No Main Camera found", gameObject); }
+        if (_mouseController == null) 
+        { 
+            Debug.LogWarning("No Mouse Controller found", gameObject); 
+            _mouseController = FindObjectOfType<MouseController>();
+        }
     }
 
     // Update is called once per frame

@@ -7,7 +7,6 @@ public class CollisionTriggerHandler : MonoBehaviour
     [SerializeField]
     private Collider ObjectCollider;
     public InteractionResult InteractionResult;
-    private bool _isColliding = false;
     private SceneChangeManager _sceneChangeManager;
     private WorldStateManager _worldStateManager;
 
@@ -22,21 +21,10 @@ public class CollisionTriggerHandler : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
         {
-            _isColliding = true;
             Interaction(InteractionResult);
         }
 
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerSub")
-        {
-            _isColliding = false;
-        }
-    }
-
-
 
     public void Interaction(InteractionResult interactionInput)
     {

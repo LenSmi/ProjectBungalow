@@ -52,7 +52,6 @@ public class SceneChangeManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(GameScenes.Scene_God.ToString()))
         {
-            //Debug.Log("Active Scene is" + SceneManager.GetActiveScene().name);
 
             AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 

@@ -32,8 +32,6 @@ public class MiningManager : MonoBehaviour
     {
         MiningTick();
 
-        Debug.Log(CanMine());
-
         FindClosestMinableNode();
 
         if (CanMine())
