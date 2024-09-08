@@ -7,7 +7,7 @@ using System.Linq;
 public class CargoUIManager : MonoBehaviour
 {
 
-    private CargoManager cargo;
+    private CargoManager cargoManager;
     public Image fillImage;
 
     private float currentImageFillAmount;
@@ -17,7 +17,7 @@ public class CargoUIManager : MonoBehaviour
     void Start()
     {
         currentImageFillAmount = fillImage.fillAmount;
-        cargo = GameManager.Instance().Cargo();
+        cargoManager = GameManager.Instance().CargoManager();
 
         CargoManager.AddItemsToCargo += UpdateAddFillUi;
         CargoManager.AddItemsToDeposit += UpdateReduceFillUi;
@@ -25,12 +25,12 @@ public class CargoUIManager : MonoBehaviour
 
     private void UpdateAddFillUi()
     {
-        UIHelper.LerpAddFillImage(fillImage, cargo.previouslyAddedAmount, cargo.maxCargo, lerpAnimationNumber);
+        UIHelper.LerpAddFillImage(fillImage, cargoManager.previouslyAddedAmount, cargoManager.maxCargo, lerpAnimationNumber);
     }
 
     private void UpdateReduceFillUi()
     {
-        UIHelper.LerpReduceFillImage(fillImage, cargo.SubCargoData.Resources.Values.Sum(), cargo.maxCargo, lerpAnimationNumber);
+        UIHelper.LerpReduceFillImage(fillImage, cargoManager.SubCargoData.Resources.Values.Sum(), cargoManager.maxCargo, lerpAnimationNumber);
     }
 
 }

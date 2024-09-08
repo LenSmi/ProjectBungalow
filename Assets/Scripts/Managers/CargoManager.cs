@@ -64,6 +64,8 @@ public class CargoManager : MonoBehaviour
             GlobalCargoData.AddResource(resource.Key, resource.Value);
             DepositCargoData.RemoveResource(resource.Key, resource.Value);
         }
+
+        currentCargo = 0;
     }
 
     public bool IsCargoFull()

@@ -41,10 +41,10 @@ public class CoinPickup : MonoBehaviour, IPickup
 
     public void OnPickup()
     {
-        CargoManager cargo = GameManager.Instance().Cargo();
-        if (!cargo.IsCargoFull())
+        CargoManager cargoManager = GameManager.Instance().CargoManager();
+        if (!cargoManager.IsCargoFull())
         {
-            cargo.AddCargo(itemData, AddedQuantity);
+            cargoManager.AddCargo(itemData, AddedQuantity);
             Destroy(gameObject);
         }
     }

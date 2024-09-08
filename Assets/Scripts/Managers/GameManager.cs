@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance() { return instance_; }
     private static GameManager instance_;
-    public CargoManager Cargo() { return cargo_; }
+    public CargoManager CargoManager() { return cargo_; }
     [SerializeField]
     private CargoManager cargo_;
     public SceneChangeManager SceneChangeManager() { return _sceneChangeManager; }

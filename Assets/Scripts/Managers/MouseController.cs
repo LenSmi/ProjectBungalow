@@ -38,7 +38,7 @@ public class MouseController : MonoBehaviour
     void Start()
     {
         subMover = FindObjectOfType<SubMover>();
-        _cargo = GameManager.Instance().Cargo();
+        _cargo = GameManager.Instance().CargoManager();
         _mainCamera = Camera.main;
 
         if (_mainCamera == null) { Debug.LogWarning("No Main Camera found", gameObject); }
@@ -108,7 +108,7 @@ public class MouseController : MonoBehaviour
 
                     if(_cargo == null)
                     {
-                        _cargo = GameManager.Instance().Cargo();
+                        _cargo = GameManager.Instance().CargoManager();
                     }
 
                     _cargo.AddCargoToDeposit();
@@ -118,7 +118,7 @@ public class MouseController : MonoBehaviour
 
                     if (_cargo == null)
                     {
-                        _cargo = GameManager.Instance().Cargo();
+                        _cargo = GameManager.Instance().CargoManager();
                     }
 
                     MinigameManager manager = GameManager.Instance().MinigameManager();

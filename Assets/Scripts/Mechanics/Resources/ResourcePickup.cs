@@ -59,11 +59,11 @@ public class ResourcePickup : MonoBehaviour, IPickup
         MinigameManager manager = GameManager.Instance().MinigameManager();
         manager.UpdateQuota(ResourceQuantity);
 
-        CargoManager cargo = GameManager.Instance().Cargo();
+        CargoManager cargoManager = GameManager.Instance().CargoManager();
 
-        if (!cargo.IsCargoFull())
+        if (!cargoManager.IsCargoFull())
         {
-            cargo.AddCargo(resourceItemData, ResourceQuantity);
+            cargoManager.AddCargo(resourceItemData, ResourceQuantity);
             Destroy(gameObject);
         }
     }
