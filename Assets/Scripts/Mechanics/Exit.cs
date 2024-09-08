@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    public Transform InitialTransformPoint;
     public Transform TransformPoint;
     public Transform DoorObjectTransform;
+    private Vector3 _initialPos;
 
     // Start is called before the first frame update
     void Start()
     {
+
         var MinigameManager = GameManager.Instance().MinigameManager();
         MinigameManager.QuotaReached += OpenDoor;
+        _initialPos = DoorObjectTransform.localPosition;
 
         if (DoorObjectTransform)
         {
-            DoorObjectTransform.transform.position = InitialTransformPoint.localPosition;
+            DoorObjectTransform.transform.localPosition = _initialPos;
         }
         else
         {

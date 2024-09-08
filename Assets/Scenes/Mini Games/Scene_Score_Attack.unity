@@ -8286,7 +8286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce033db0771ddd4480be3eed12c26af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTransformPoint: {fileID: 712474177}
+  InitialTransformPoint: {x: -15.085743, y: 0.9845572, z: -1.4331335}
   TransformPoint: {fileID: 451279801}
   DoorObjectTransform: {fileID: 712474177}
 --- !u!1 &404316503
