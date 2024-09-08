@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,22 @@ public class ScoreAttackStartState : GameState
     public override void Awake()
     {
         base.Awake();
-        SceneChangeManager.IsLoadingDone += StartGame;
+    
+        SceneChangeManager.IsLoadingDone += StartGame;   
+            
     }
+
     public override void EnterGamestate()
     {
         Debug.Log("Entering state SCA START");
         var sceneManager = GameManager.Instance().SceneChangeManager();
         StartCoroutine(sceneManager.IELoadGameScene(GameScenes.Scene_Score_Attack));
+
+        if (SceneManager.GetSceneByName(GameScenes.Scene_Score_Attack.ToString()).isLoaded)
+        {
+            var minigameManager = GameManager.Instance().MinigameManager();
+            StartCoroutine(minigameManager.StartGame());
+        }
 
     }
 
@@ -26,7 +36,20 @@ public class ScoreAttackStartState : GameState
 
     private void StartGame()
     {
-        StartCoroutine(GameManager.Instance().MinigameManager().StartGame());
+
+        if (SceneManager.GetSceneByName(GameScenes.Scene_Score_Attack.ToString()).isLoaded)
+        {
+            try
+            {
+                var minigameManager = GameManager.Instance().MinigameManager();
+                StartCoroutine(minigameManager.StartGame());
+            }
+            catch(Exception ex) 
+            { 
+                Debug.LogWarning("Could not start game: " + ex);
+            }
+
+        }
     }
 
 }

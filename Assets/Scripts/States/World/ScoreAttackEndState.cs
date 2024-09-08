@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreAttackEndState : GameState
 {
@@ -11,6 +12,7 @@ public class ScoreAttackEndState : GameState
 
     public override void EnterGamestate()
     {
+        var sceneChangeManager = GameManager.Instance().SceneChangeManager();
         StartCoroutine(sceneChangeManager.IELoadGameScene(GameScenes.Scene_Score_Attack_ScoreScreen));
     }
 

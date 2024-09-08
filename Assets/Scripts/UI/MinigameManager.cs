@@ -13,8 +13,8 @@ public class MinigameManager : MonoBehaviour
     public int CurrentQuota;
     public int QuotaThreshold;
     public int QuotaDeposit;
-    public static Action AddToDepositQuota;
-    public static Action QuotaReached;
+    public Action AddToDepositQuota;
+    public Action QuotaReached;
     public static Action StormStarted;
 
     public bool IsGameActive = false;
@@ -43,6 +43,9 @@ public class MinigameManager : MonoBehaviour
     {
         _timeUntilStorm = TimeUntilStorm;
         _startingQuota = StartingQuota;
+        CurrentQuota = StartingQuota;
+        AddedQuota = 0;
+        QuotaDeposit = 0;
 
     }
 
@@ -61,17 +64,18 @@ public class MinigameManager : MonoBehaviour
     {
         CurrentQuota += QuotaDeposit;
 
-        AddToDepositQuota?.Invoke();
-
         if(CheckOn())
         {
             CurrentQuota = 0;
+            AddedQuota = 0;
             QuotaReached?.Invoke();
         }
         else
         {
             AddedQuota = 0;
         }
+
+        AddToDepositQuota?.Invoke();
 
     }
 
@@ -112,7 +116,9 @@ public class MinigameManager : MonoBehaviour
         IsGameActive = false;
         IsStormCoroutineRunning = false;
         TimeUntilStorm = 0;
+        AddedQuota = 0;
         GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
+        GameManager.Instance().CargoManager().AddDepositToCargoInventory();
         Reset();
         return null; 
     }  

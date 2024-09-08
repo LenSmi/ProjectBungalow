@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using DG;
 
 public class QuotaUIManager : MonoBehaviour
-{
-    private MinigameManager minigameManager;
+{   
+    private MinigameManager _minigameManager;
     public Image fillImage;
     public float quotaLerpValue;
     public GameObject exitPrompt;
@@ -14,22 +14,31 @@ public class QuotaUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MinigameManager.AddToDepositQuota += UpdateQuotaUI;
-        MinigameManager.QuotaReached += UpdateExitPrompt;
+        
+        _minigameManager = GameManager.Instance().MinigameManager();
 
-        minigameManager = GameManager.Instance().MinigameManager();
-        fillImage.fillAmount = minigameManager.StartingQuota / minigameManager.QuotaThreshold;
+        _minigameManager.AddToDepositQuota += UpdateQuotaUI;
+        _minigameManager.QuotaReached += UpdateExitPrompt;
+
+       
+        fillImage.fillAmount = _minigameManager.StartingQuota / _minigameManager.QuotaThreshold;
         exitPrompt.SetActive(false);
     }
 
     private void UpdateQuotaUI()
     {
-        int additionValue = minigameManager.QuotaDeposit;
-        UIHelper.LerpAddFillImage(fillImage, additionValue, minigameManager.QuotaThreshold, quotaLerpValue);
+        int additionValue = _minigameManager.QuotaDeposit;
+        UIHelper.LerpAddFillImage(fillImage, additionValue, _minigameManager.QuotaThreshold, quotaLerpValue);
     }
 
     private void UpdateExitPrompt()
     {
         exitPrompt.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        _minigameManager.AddToDepositQuota -= UpdateQuotaUI;
+        _minigameManager.QuotaReached -= UpdateExitPrompt;
     }
 }
