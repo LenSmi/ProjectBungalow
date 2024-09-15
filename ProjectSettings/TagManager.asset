@@ -17,8 +17,8 @@ TagManager:
   - Resource
   - Deposit
   - DepositSCA
-  - 
-  - 
+  - PostProcessing
+  - NoPostProcessing
   - 
   - 
   - 
