@@ -22,6 +22,7 @@ public class RestorationNodeUI : MonoBehaviour
     {
        NodeParent.SetActive(false);
        SetRequirements();
+       UpdateRequirements();
     }
 
     public void SetRequirements()
@@ -33,11 +34,8 @@ public class RestorationNodeUI : MonoBehaviour
         {
             Debug.Log("Requirements: " + requirement.Type.ToString());
 
-            GameObject node = Instantiate(UINodePrefab, transform.position, Quaternion.identity);
-            node.transform.SetParent(NodeParent.transform, false);
-
-            TextMeshProUGUI nodeText = node.GetComponentInChildren<TextMeshProUGUI>();
-            nodeText.text = "X" + requirement.quantity.ToString();
+            GameObject node = Instantiate(UINodePrefab, NodeParent.transform.position, Quaternion.identity);
+            node.transform.SetParent(NodeParent.transform, true);
 
             Image nodeIcon = node.transform.Find("Icon").GetComponent<Image>();
             Sprite sprite = requirement.ResourceItemData.UIIcon;
