@@ -89,7 +89,7 @@ public class RestorationNode : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == GameConstants.PlayerTag)
+        if (other.gameObject.tag == GameConstants.PlayerTag && !IsRestored)
         {
             _IsColliding = true;
             SetUIRequirements();
