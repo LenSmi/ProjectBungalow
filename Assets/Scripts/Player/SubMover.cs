@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -27,12 +28,23 @@ public class SubMover : MonoBehaviour
 
 
     [Header("Dash Properties")]
-    public float DashMultiplier = 2f;
+    public float BaseDashMultiplier;
+    public float ForcedDashMultiplier;
     public float HeatLevel = 0;
     public float HeatIncreaseRate = 0.1f;
     public bool Overheated = false;
+    public Vector3 input;
 
     //Movement Props
+
+    private enum DashType
+    {
+        DASH,
+        FORCED_DASH
+    }
+
+    private DashType dashType;
+
     private const string horizontalInput = "Horizontal";
     private const string verticalInput = "Vertical";
 
@@ -41,11 +53,11 @@ public class SubMover : MonoBehaviour
 
     private float horizontal;
     private float vertical;
-    public Vector3 input;
+
 
     private void Update()
     {
-        if (CheckInput())
+        if (CheckInput() && SubStateManager.currentSubState != GameConstants.PlayerStates.FORCED_DASHING)
         {
            SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
         }
@@ -64,10 +76,24 @@ public class SubMover : MonoBehaviour
             Move();
         }
 
+
+
+        if(SubStateManager.currentSubState == GameConstants.PlayerStates.FORCED_DASHING)
+        {
+            ForcedMove();
+        }
+
         if (!CanDash())
         {
             ReduceHeat();
         }
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(IEForcedDash());
+        }
+#endif
     }
 
     public void Move()
@@ -87,15 +113,32 @@ public class SubMover : MonoBehaviour
 
         if (!CanDash())
         {
-            Debug.Log("Moving");
             MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed);
         }
         else
         {
-            MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed, DashMultiplier);
+            MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed, BaseDashMultiplier);
             IncreaseHeat();
         }
 
+    }
+
+    public void ForcedMove()
+    {
+
+        horizontal = Input.GetAxis(horizontalInput);
+        vertical = Input.GetAxis(verticalInput);
+
+        Vector3 position = transform.position;
+
+        CalculateAngleOffset();
+        input = (horizontal * angleX + vertical * angleZ).normalized;
+        Vector3 movement = input * movementSpeed * Time.deltaTime;
+
+        Vector3 newPos = position + movement;
+        Vector3 targetPos = new Vector3(newPos.x, transform.position.y, newPos.z);
+
+        MovementHelpers.MoveObjectForward(transform, input, movementSpeed, rotSpeed,ForcedDashMultiplier);
 
     }
 
@@ -127,12 +170,10 @@ public class SubMover : MonoBehaviour
             return false;
         }
     }
+
     public bool CanDash()
     {
-        ///1. Check for input
-        ///2. Increase speed in a burst
-        ///3. Maintain speed for Duration of batter
-        ///4. slow down.
+        dashType = DashType.DASH;
         return Input.GetKey(KeyCode.Space) && HeatLevel < 105 && !Overheated;
     }
 
@@ -157,7 +198,6 @@ public class SubMover : MonoBehaviour
             HeatLevel -= HeatIncreaseRate;
         }
     }
-
     IEnumerator OverHeat()
     {
         HeatLevel = 120;
@@ -169,4 +209,10 @@ public class SubMover : MonoBehaviour
         Overheated = false;
     }
 
+    public IEnumerator IEForcedDash()
+    {
+        SubStateManager.currentSubState = GameConstants.PlayerStates.FORCED_DASHING;
+        yield return new WaitForSeconds(1);
+        SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
+    }
 }

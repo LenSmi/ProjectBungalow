@@ -16,10 +16,12 @@ public class GameConstants
 
     public enum PlayerStates
     {
+        NONE,
         IDLE,
         MOVING,
         MINNING,
-        DASHING
+        DASHING,
+        FORCED_DASHING,
 
     }
 

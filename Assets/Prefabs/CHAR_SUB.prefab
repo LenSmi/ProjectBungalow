@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 5738568085583983742}
   - component: {fileID: 7948733642813009790}
   - component: {fileID: 1228462223593306836}
+  - component: {fileID: 2695294450365307533}
   m_Layer: 0
   m_Name: CHAR_SUB
   m_TagString: PlayerSub
@@ -911,6 +912,8 @@ MonoBehaviour:
   angleOffsetX: 0.8
   angleOffsetZ: -0.8
   DashMultiplier: 1.7
+  BaseDashMultiplier: 0
+  ForcedDashMultiplier: 0
   HeatLevel: 0
   HeatIncreaseRate: 2
   Overheated: 0
@@ -927,15 +930,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0cc3c8f82dbf74ea9e589703a22dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durabilityLoss: 30
-  miningTickInterval: 1
-  timer: 0
-  canMine: 0
-  ticking: 1
-  playerTransform: {fileID: 0}
-  mover: {fileID: 0}
-  targetNodeTransorm: {fileID: 0}
-  resourceNode: {fileID: 0}
+  DurabilityLoss: 30
+  MiningTickInterval: 0
+  Timer: 0
+  CanBeMined: 0
+  Ticking: 0
+  PlayerTransform: {fileID: 0}
+  SubMover: {fileID: 0}
+  TargetNodeTransorm: {fileID: 0}
+  ResourceNode: {fileID: 0}
   physicsSphereOverlapRadius: 10
   resourceNodeLayer:
     serializedVersion: 2
@@ -982,6 +985,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &2695294450365307533
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228462223593306834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0.1, y: 0, z: -0.4}
 --- !u!1 &1933889276886400215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1286,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5824099400767854057}
   - component: {fileID: 3375856663260837797}
-  - component: {fileID: 1529924256562453202}
   m_Layer: 0
   m_Name: Body
   m_TagString: PlayerSub
@@ -1305,29 +1330,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &1529924256562453202
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4474154670089015168}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 2
-  m_Center: {x: 0.1, y: 0, z: -0.4}
 --- !u!1 &5651819021597232628
 GameObject:
   m_ObjectHideFlags: 0
