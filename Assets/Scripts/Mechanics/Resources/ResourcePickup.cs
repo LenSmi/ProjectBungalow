@@ -63,7 +63,7 @@ public class ResourcePickup : MonoBehaviour, IPickup
 
         if (!cargoManager.IsCargoFull())
         {
-            cargoManager.AddCargo(resourceItemData, ResourceQuantity);
+            cargoManager.AddCargo(resourceItemData, resourceItemData.Quantity);
             Destroy(gameObject);
         }
     }

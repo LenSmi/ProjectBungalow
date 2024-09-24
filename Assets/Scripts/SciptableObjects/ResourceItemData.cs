@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class ResourceItemData : ScriptableObject
 {
     public ResourceType resourceType;
-    public int Value;
+    public int ItemValue;
+    public int Quantity;
     public int Weight;
     public Sprite UIIcon;
 }

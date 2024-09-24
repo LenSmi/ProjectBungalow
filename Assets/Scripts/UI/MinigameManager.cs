@@ -6,26 +6,30 @@ using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
 {
-    public int ScoreAttack_TotalScore = 0;
-    public int ScoreModifier = 1;
+    [Header("Dependencies")]
+    public PerformanceEvaluationData _performanceData;
+
+    [Header("Values")]
     public int StartingQuota;
-    public int AddedQuota;
-    public int CurrentQuota;
+    private int CurrentQuota;
     public int QuotaThreshold;
+    [HideInInspector] public int AddedQuota;
     public int QuotaDeposit;
+
+    [Header("StormValues")]
+    public float TimeUntilStorm;
+    public float ToxicityDamage;
+
     public Action AddToDepositQuota;
     public Action QuotaReached;
     public static Action StormStarted;
 
-    public bool IsGameActive = false;
+    [HideInInspector] public bool IsGameActive = false;
     private bool IsStormCoroutineRunning = false;
-
-    public float TimeUntilStorm;
-    public float ToxicityDamage;
 
     private int _startingQuota;
     private float _timeUntilStorm;
-
+   
     private void Start()
     {
         Init();
@@ -117,8 +121,14 @@ public class MinigameManager : MonoBehaviour
         IsStormCoroutineRunning = false;
         TimeUntilStorm = 0;
         AddedQuota = 0;
-        GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
+
+        //Performance evaluation here?
+        PerformanceEvaluationData performanceData = new PerformanceEvaluationData();
+        performanceData.CalculateScore();
+        _performanceData = performanceData;
+
         GameManager.Instance().CargoManager().AddDepositToCargoInventory();
+        GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);
         Reset();
         return null; 
     }  

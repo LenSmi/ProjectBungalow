@@ -8,6 +8,7 @@ public class RestorationNode : MonoBehaviour
     [Header("Restoration Values")]
     public bool IsRestored = false;
     public RestorationNodeUI RestorationNodeUI;
+    public CargoData CargoData;
 
     [Header("Meshes")]
     public MeshRenderer MeshRenderer;
@@ -17,13 +18,7 @@ public class RestorationNode : MonoBehaviour
     [Header("Requirements List"), 
         Tooltip("Set requirements by adding options to the array. The relevant ScriptableObject needs to be assigned based on the given type")]
     public List<RestorationRequirement> requiredResources = new List<RestorationRequirement>();
-    private CargoData _cargoData;
     private bool _IsColliding = false;
-
-    private void Start()
-    {
-        _cargoData = GameManager.Instance().CargoManager().GlobalCargoData;
-    }
 
     public void Update()
     {
@@ -45,7 +40,7 @@ public class RestorationNode : MonoBehaviour
     {
         foreach (var requirement in requiredResources)
         {
-            if (_cargoData.GetResourceAmount(requirement.Type) < requirement.quantity)
+            if (CargoData.GetResourceAmount(requirement.Type) < requirement.quantity)
             {
                 return false;
             }
@@ -57,7 +52,7 @@ public class RestorationNode : MonoBehaviour
     {
         foreach (var requirement in requiredResources)
         {
-            if (_cargoData.GetResourceAmount(requirement.Type) > requirement.quantity)
+            if (CargoData.GetResourceAmount(requirement.Type) > requirement.quantity)
             {
                 requirement.IsMet = true;
             }

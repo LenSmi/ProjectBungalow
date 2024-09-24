@@ -35,35 +35,44 @@ public class CargoManager : MonoBehaviour
 
     public void AddCargo(ResourceItemData itemData, int quantity)
     {
-        int cargoCheck = currentCargo < maxCargo ? quantity : 0;
+        int cargoCheck = currentCargo < maxCargo ? itemData.Weight : 0;
 
         SubCargoData.AddResource(itemData, quantity);
-        currentCargo += cargoCheck;
-        previouslyAddedAmount = quantity;
+        currentCargo += itemData.Weight;
+        previouslyAddedAmount = itemData.Weight;
 
         AddItemsToCargo?.Invoke();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void AddCargoToDeposit()
     {
 
         foreach (var resource in SubCargoData.Resources.ToList())
         {
             DepositCargoData.AddResource(resource.Key, resource.Value);
-            currentCargo -= resource.Value;
+            currentCargo -= resource.Key.Weight;
             SubCargoData.RemoveResource(resource.Key, resource.Value);
         }
 
         AddItemsToDeposit?.Invoke();
     }
 
+    /// <summary>
+    /// Adds current deposit to GlobalCargoData. This should be called when the player exits the trench.
+    /// </summary>
     public void AddDepositToCargoInventory()
     {
+
         foreach (var resource in DepositCargoData.Resources.ToList())
         {
             GlobalCargoData.AddResource(resource.Key, resource.Value);
             DepositCargoData.RemoveResource(resource.Key, resource.Value);
         }
+
+ 
 
         currentCargo = 0;
     }

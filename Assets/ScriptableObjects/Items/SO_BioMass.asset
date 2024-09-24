@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73f4350c74fa469478817eb2ef935239, type: 3}
-  m_Name: SO_Plastics
+  m_Name: SO_BioMass
   m_EditorClassIdentifier: 
-  resourceType: 2
-  Value: 0
-  Weight: 0
-  UIIcon: {fileID: 21300000, guid: 3fd648e987acbe24a8425b61a1543e89, type: 3}
+  resourceType: 1
+  Value: 10
+  Quantity: 5
+  Weight: 1
+  UIIcon: {fileID: 21300000, guid: eec7a6e33825ea6458f0de1ffcbee60f, type: 3}
