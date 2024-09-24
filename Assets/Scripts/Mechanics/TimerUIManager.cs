@@ -23,7 +23,7 @@ public class TimerUIManager : MonoBehaviour
     {
         if (!minigameManager.IsStormActive())
         {
-            fillImage.fillAmount = minigameManager.TimeUntilStorm / 100;
+            fillImage.fillAmount = minigameManager.TimeUntilStorm / minigameManager.MaxTimeUntilStorm;
         }
 
     }

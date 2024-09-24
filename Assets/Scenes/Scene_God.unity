@@ -785,6 +785,7 @@ MonoBehaviour:
   AddedQuota: 0
   QuotaDeposit: 0
   TimeUntilStorm: 300
+  MaxTimeUntilStorm: 300
   ToxicityDamage: 2
   IsGameActive: 0
 --- !u!1 &1064844450

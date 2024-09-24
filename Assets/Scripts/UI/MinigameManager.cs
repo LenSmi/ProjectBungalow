@@ -18,6 +18,7 @@ public class MinigameManager : MonoBehaviour
 
     [Header("StormValues")]
     public float TimeUntilStorm;
+    public float MaxTimeUntilStorm;
     public float ToxicityDamage;
 
     public Action AddToDepositQuota;
