@@ -12,6 +12,7 @@ public class SubMover : MonoBehaviour
     [SerializeField] private MouseController mouseController;
     [SerializeField] private MiningManager miningManager;
     [SerializeField] private Transform tracker;
+    public ParticleSystem dustTrailSystem;
 
     [Header("Movement Properties")]
     public float rotSpeed;
@@ -61,6 +62,10 @@ public class SubMover : MonoBehaviour
         {
            SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
         }
+        else if(!CheckInput() && SubStateManager.currentSubState != GameConstants.PlayerStates.FORCED_DASHING)
+        {
+            SubStateManager.currentSubState = GameConstants.PlayerStates.IDLE;
+        }
 
         if (SubStateManager.currentSubState == GameConstants.PlayerStates.MINNING && miningManager.TargetNodeTransorm != null && !CanDash())
         {
@@ -74,6 +79,11 @@ public class SubMover : MonoBehaviour
         if (SubStateManager.currentSubState == GameConstants.PlayerStates.MOVING)
         {
             Move();
+            dustTrailSystem.Play();
+        }
+        else
+        {
+            dustTrailSystem.Stop();
         }
 
 
@@ -81,6 +91,7 @@ public class SubMover : MonoBehaviour
         if(SubStateManager.currentSubState == GameConstants.PlayerStates.FORCED_DASHING)
         {
             ForcedMove();
+            dustTrailSystem.Play();
         }
 
         if (!CanDash())
@@ -160,7 +171,7 @@ public class SubMover : MonoBehaviour
 
     public bool CheckInput()
     {
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             Debug.Log("input registered");
             return true;

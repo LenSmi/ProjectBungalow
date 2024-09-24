@@ -47,7 +47,7 @@ public class CargoManager : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    public void AddCargoToDeposit()
+    public void AddSubCargoToDeposit()
     {
 
         foreach (var resource in SubCargoData.Resources.ToList())
@@ -93,9 +93,18 @@ public class CargoManager : MonoBehaviour
                 Debug.Log($"Junk in subinventory{entry.Key}: {entry.Value} units");
             }
 
+            Debug.Log("==============");
+
             foreach (var entry in DepositCargoData.Resources)
             {
                 Debug.Log($"Junk in deposit{entry.Key}: {entry.Value} units");
+            }
+
+            Debug.Log("==============");
+
+            foreach (var entry in GlobalCargoData.Resources)
+            {
+                Debug.Log($"Junk in global{entry.Key}: {entry.Value} units");
             }
         }
     }

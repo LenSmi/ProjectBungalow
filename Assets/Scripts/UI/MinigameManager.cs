@@ -123,9 +123,9 @@ public class MinigameManager : MonoBehaviour
         AddedQuota = 0;
 
         //Performance evaluation here?
-        PerformanceEvaluationData performanceData = new PerformanceEvaluationData();
-        performanceData.CalculateScore();
-        _performanceData = performanceData;
+
+        _performanceData.Reset();
+        _performanceData.CalculateScore();
 
         GameManager.Instance().CargoManager().AddDepositToCargoInventory();
         GameManager.Instance().WorldStateManager().TransitionToState(EGameStates.ScoreAttackEnd);

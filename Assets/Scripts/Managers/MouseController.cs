@@ -111,7 +111,7 @@ public class MouseController : MonoBehaviour
                         _cargo = GameManager.Instance().CargoManager();
                     }
 
-                    _cargo.AddCargoToDeposit();
+                    _cargo.AddSubCargoToDeposit();
 
                     break;
                 case "DepositSCA":
@@ -128,7 +128,7 @@ public class MouseController : MonoBehaviour
                         manager.DepositQuota();
                     }
 
-                    _cargo.AddCargoToDeposit();
+                    _cargo.AddSubCargoToDeposit();
                     break;
             }
 

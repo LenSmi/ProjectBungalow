@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ResourceItemData : ScriptableObject
 {
     public ResourceType resourceType;
+    public int ScoreValue;
     public int ItemValue;
     public int Quantity;
     public int Weight;

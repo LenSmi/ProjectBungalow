@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6303a6f76e2863a4c832d95a13adf2f4, type: 3}
+  m_Name: PerformanceData
+  m_EditorClassIdentifier: 
+  IsAlive: 0
+  AliveScore: 0
+  TotalScore: 0
+  CargoData: {fileID: 11400000, guid: a382b697a2621664e899527db1c2921e, type: 2}
