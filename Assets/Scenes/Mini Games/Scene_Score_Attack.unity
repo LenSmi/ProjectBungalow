@@ -5137,7 +5137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 757b1d1094b61284b9fca22b6d3fa9a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6066,7 +6066,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 757b1d1094b61284b9fca22b6d3fa9a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7729,7 +7729,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 757b1d1094b61284b9fca22b6d3fa9a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8490,7 +8490,7 @@ Transform:
   m_GameObject: {fileID: 381129724}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.4588418, z: -0, w: 0.888518}
-  m_LocalPosition: {x: -15.085743, y: 0.9845572, z: -1.4331335}
+  m_LocalPosition: {x: -15.41, y: 0.9845572, z: -1.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10145,7 +10145,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 757b1d1094b61284b9fca22b6d3fa9a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21693,6 +21693,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2033194125}
     - target: {fileID: 1228462223593306837, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: dustTrailSystem
+      value: 
+      objectReference: {fileID: 1861090777}
+    - target: {fileID: 1228462223593306837, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
       propertyPath: mouseController
       value: 
       objectReference: {fileID: 1404411305}
@@ -21727,6 +21731,78 @@ PrefabInstance:
     - target: {fileID: 4474154670089015168, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: UVModule.cycles
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: UVModule.timeMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: UVModule.startFrame.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: UVModule.frameOverTime.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 37092
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0.19090424
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.38299754
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.47563
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.6001245
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.7554363
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_NumColorKeys
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5200994686267100092, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
       propertyPath: m_Mesh
@@ -22667,6 +22743,11 @@ Mesh:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7107298543466835359, guid: f78a37c70a16e2b4b89e64be17a52cac, type: 3}
   m_PrefabInstance: {fileID: 1389372469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1861090777 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5063819720322027766, guid: ae6a25cf612244442bbac0b090a7ba35, type: 3}
+  m_PrefabInstance: {fileID: 1634920089}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1871806228
 GameObject:

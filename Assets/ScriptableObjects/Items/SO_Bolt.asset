@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SO_Bolt
   m_EditorClassIdentifier: 
   resourceType: 3
-  Value: 10
+  ScoreValue: 100
+  ItemValue: 0
   Quantity: 1
   Weight: 0
   UIIcon: {fileID: 0}
