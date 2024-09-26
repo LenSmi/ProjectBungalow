@@ -13,6 +13,7 @@ public class SubMover : MonoBehaviour
     [SerializeField] private MiningManager miningManager;
     [SerializeField] private Transform tracker;
     public ParticleSystem dustTrailSystem;
+    public Transform cameraTransform;
 
     [Header("Movement Properties")]
     public float rotSpeed;
@@ -116,7 +117,16 @@ public class SubMover : MonoBehaviour
         Vector3 position = transform.position;
 
         CalculateAngleOffset();
-        input = (horizontal * angleX + vertical * angleZ).normalized;
+
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        input = (horizontal * right + vertical * forward).normalized;
         Vector3 movement = input * movementSpeed * Time.deltaTime;
 
         Vector3 newPos = position + movement;
@@ -143,13 +153,22 @@ public class SubMover : MonoBehaviour
         Vector3 position = transform.position;
 
         CalculateAngleOffset();
-        input = (horizontal * angleX + vertical * angleZ).normalized;
+
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        input = (horizontal * right + vertical * forward).normalized;
         Vector3 movement = input * movementSpeed * Time.deltaTime;
 
         Vector3 newPos = position + movement;
         Vector3 targetPos = new Vector3(newPos.x, transform.position.y, newPos.z);
 
-        MovementHelpers.MoveObjectForward(transform, input, movementSpeed, rotSpeed,ForcedDashMultiplier);
+        MovementHelpers.MoveObjectForward(transform, input, movementSpeed, rotSpeed, ForcedDashMultiplier);
 
     }
 
