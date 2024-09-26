@@ -7,6 +7,7 @@ public class ScoreAttackSaloonState : GameState, IGameState
     public override void EnterGamestate()
     {
         var sceneChangeManager = GameManager.Instance().SceneChangeManager();
+        Cursor.visible = false;
         StartCoroutine(sceneChangeManager.IELoadGameScene(GameScenes.Scene_Score_Attack_Saloon));
     }
 

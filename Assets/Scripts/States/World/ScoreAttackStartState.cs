@@ -12,7 +12,7 @@ public class ScoreAttackStartState : GameState
         base.Awake();
     
         SceneChangeManager.IsLoadingDone += StartGame;   
-            
+        Cursor.visible = false;
     }
 
     public override void EnterGamestate()
