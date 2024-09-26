@@ -16,9 +16,12 @@ public class MiningManager : MonoBehaviour
     public SubMover SubMover;
     public Transform TargetNodeTransorm;
     public ResourceNode ResourceNode;
+    private CargoManager CargoManager;
+    private MinigameManager MinigameManager;
 
     public float physicsSphereOverlapRadius = 10;
     public LayerMask resourceNodeLayer;
+    public LayerMask depositLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class MiningManager : MonoBehaviour
         MiningTick();
 
         FindClosestMinableNode();
+        FindClosestDeposit();
 
         if (CanMine())
         {
@@ -102,6 +106,42 @@ public class MiningManager : MonoBehaviour
                 {
                     ResourceNode = node.resourceNode;
                     TargetNodeTransorm = node.resourceTransform;
+                }
+
+            }
+        }
+    }
+
+    void FindClosestDeposit()
+    {
+
+        Collider[] hitColliders = Physics.OverlapSphere(PlayerTransform.position, physicsSphereOverlapRadius, depositLayer);
+        float previousClosestNode = Mathf.Infinity;
+
+        foreach (Collider collider in hitColliders)
+        {
+            float distanceToNode = Vector3.Distance(transform.position, collider.transform.position);
+
+            if (distanceToNode < previousClosestNode)
+            {
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+
+                    MinigameManager = GameManager.Instance().MinigameManager();
+
+                    if (MinigameManager.AddedQuota != 0)
+                    {
+                        MinigameManager.DepositQuota();
+                    }
+
+
+                    if (CargoManager == null)
+                    {
+                        CargoManager = GameManager.Instance().CargoManager();
+                    }
+
+                    CargoManager.AddSubCargoToDeposit();
                 }
 
             }
