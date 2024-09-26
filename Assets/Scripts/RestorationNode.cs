@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class RestorationNode : MonoBehaviour
@@ -14,6 +16,7 @@ public class RestorationNode : MonoBehaviour
     public MeshRenderer MeshRenderer;
     public GameObject UnrestoredMesh;
     public GameObject RestoredMesh;
+    public Image RestorationIcon;
 
     [Header("Requirements List"), 
         Tooltip("Set requirements by adding options to the array. The relevant ScriptableObject needs to be assigned based on the given type")]
@@ -87,6 +90,11 @@ public class RestorationNode : MonoBehaviour
         if (other.gameObject.tag == GameConstants.PlayerTag && !IsRestored)
         {
             _IsColliding = true;
+
+            Color color = RestorationIcon.color;
+            color.a = 0;
+            RestorationIcon.DOColor(color, 0.3f);
+
             SetUIRequirements();
          
         }
@@ -94,9 +102,14 @@ public class RestorationNode : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == GameConstants.PlayerTag)
+        if (other.gameObject.tag == GameConstants.PlayerTag && !IsRestored)
         {
             _IsColliding = false;
+
+            Color color = RestorationIcon.color;
+            color.a = 1;
+            RestorationIcon.DOColor(color, 0.3f);
+
             RestorationNodeUI.NodeParent.SetActive(false);
         }
     }
