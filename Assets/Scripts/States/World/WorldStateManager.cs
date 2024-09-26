@@ -25,10 +25,7 @@ public class WorldStateManager : MonoBehaviour
 
     public void Start()
     {
-
-#if UNITY_EDITOR
         TransitionToState(initialGameState);
-#endif
     }
 
     public void TransitionToState(EGameStates gameState)

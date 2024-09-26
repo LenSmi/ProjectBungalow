@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1943999626388225027
+--- !u!114 &-7674724503322495099
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,13 +15,13 @@ MonoBehaviour:
   active: 1
   showInSceneView:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   enabled:
     m_OverrideState: 1
     m_Value: 1
   distortionStrength:
     m_OverrideState: 1
-    m_Value: 0.05
+    m_Value: 0.07
   backgroundColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
@@ -37,32 +37,32 @@ MonoBehaviour:
     dimension: 1
   rgbStrength:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.3
   scanlineTex:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 7b5d79ca87223054fa2cb8ee041efb01, type: 3}
     dimension: 1
   scanlineStrength:
-    m_OverrideState: 0
-    m_Value: 0.4
+    m_OverrideState: 1
+    m_Value: 0.3
   scanlineSize:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 6
   scrollSpeed:
-    m_OverrideState: 0
-    m_Value: 1.5
+    m_OverrideState: 1
+    m_Value: 0.5
   pixelSize:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   aberrationStrength:
     m_OverrideState: 1
     m_Value: 1.74
   brightness:
     m_OverrideState: 1
-    m_Value: 2.12
+    m_Value: 1.7
   contrast:
     m_OverrideState: 1
-    m_Value: 1.37
+    m_Value: 0.39
   enableInterlacing:
     m_OverrideState: 1
     m_Value: 0
@@ -76,36 +76,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Saloon PostProcessing Profile
+  m_Name: Score Screen Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -1943999626388225027}
-  - {fileID: 8001703073644586593}
---- !u!114 &8001703073644586593
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
-  m_Name: Vignette
-  m_EditorClassIdentifier: 
-  active: 1
-  color:
-    m_OverrideState: 1
-    m_Value: {r: 0.4056604, g: 0.28926784, b: 0.14351194, a: 1}
-  center:
-    m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.5}
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.528
-  smoothness:
-    m_OverrideState: 1
-    m_Value: 0.2
-  rounded:
-    m_OverrideState: 0
-    m_Value: 0
+  - {fileID: -7674724503322495099}
