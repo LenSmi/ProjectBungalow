@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using DG.Tweening;
 using UnityEngine;
 
 public class ScoreScreenManager : MonoBehaviour

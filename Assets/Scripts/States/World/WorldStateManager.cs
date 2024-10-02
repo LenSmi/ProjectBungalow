@@ -5,6 +5,7 @@ using UnityEngine;
 public enum EGameStates
 {
     Loading,
+    MainMenu,
     Hub,
     Trench,
     ScoreAttackSaloon,
@@ -33,6 +34,9 @@ public class WorldStateManager : MonoBehaviour
 
         switch (gameState)
         {
+            case EGameStates.MainMenu:
+                ChangeState<MainMenuState>();
+                break;
             case EGameStates.Hub:
                 ChangeState<HubState>();
                 break;

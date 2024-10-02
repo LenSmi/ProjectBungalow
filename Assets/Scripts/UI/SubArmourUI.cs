@@ -19,6 +19,6 @@ public class SubArmourUI : MonoBehaviour
     // Update is called once per frame
     void UpdateArmour()
     {
-        fillImage.fillAmount = subArmour.currentArmourAmount / subArmour.maxArmourAmount;
+        fillImage.fillAmount = subArmour.currentArmourAmount.Value / subArmour.maxArmourAmount;
     }
 }

@@ -19,7 +19,7 @@ public class ScoreAttackStartState : GameState
     {
         Debug.Log("Entering state SCA START");
         var sceneManager = GameManager.Instance().SceneChangeManager();
-        StartCoroutine(sceneManager.IELoadGameScene(GameScenes.Scene_Score_Attack));
+        sceneManager.LoadGameScene(GameScenes.Scene_Score_Attack);
 
         if (SceneManager.GetSceneByName(GameScenes.Scene_Score_Attack.ToString()).isLoaded)
         {

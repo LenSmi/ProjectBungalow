@@ -6,7 +6,7 @@ using UnityEngine;
 public class SubArmour : MonoBehaviour
 {
     public float maxArmourAmount = 100;
-    public float currentArmourAmount;
+    public FloatReference currentArmourAmount;
 
     public float invincibilityInterval;
     private float currentInvincibilityInterval = 0;
@@ -17,7 +17,7 @@ public class SubArmour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentArmourAmount = maxArmourAmount;
+        currentArmourAmount.Value = maxArmourAmount;
         currentInvincibilityInterval = invincibilityInterval;
     }
 
@@ -35,18 +35,18 @@ public class SubArmour : MonoBehaviour
     public void GainArmour(float amount)
     {
 
-        currentArmourAmount += amount;
+        currentArmourAmount.Value += amount;
         GainArmourAction?.Invoke();
     }
 
     public void LoseArmour(float damage)
     {
 
-        currentArmourAmount -= damage;
+        currentArmourAmount.Value -= damage;
 
         LoseArmourAction?.Invoke();
 
-        if (currentArmourAmount <= 0)
+        if (currentArmourAmount.Value <= 0 && GameManager.Instance().MinigameManager().IsGameActive)
         {
             StartCoroutine(GameManager.Instance().MinigameManager().EndGame());
         }

@@ -5,24 +5,18 @@ using UnityEngine.UI;
 
 public class StormUI : MonoBehaviour
 {
-    public Image StormOverlay;
-    public float DesiredAlpha;
-    private Color _stormOverlayAlpha;
+    public GameObject stormFX;
 
     // Start is called before the first frame update
     void Start()
     {
-        _stormOverlayAlpha = StormOverlay.color;
-        _stormOverlayAlpha.a = 0;
-        StormOverlay.color = _stormOverlayAlpha;
+        stormFX.SetActive(false);
         MinigameManager.StormStarted += UpdateStormUI;
     }
 
     void UpdateStormUI()
     {
-        _stormOverlayAlpha = StormOverlay.color;
-        _stormOverlayAlpha.a = DesiredAlpha;
-        StormOverlay.color = _stormOverlayAlpha;
+        stormFX.SetActive(true);
     }
 
     private void OnDestroy()

@@ -36,6 +36,9 @@ public class SubMover : MonoBehaviour
     public float HeatIncreaseRate = 0.1f;
     public bool Overheated = false;
     public Vector3 input;
+    public float DesiredCameraDistance;
+    public FloatReference CameraDistanceFromPlayer;
+    private float _originalCameraDistance;
 
     //Movement Props
 
@@ -44,8 +47,6 @@ public class SubMover : MonoBehaviour
         DASH,
         FORCED_DASH
     }
-
-    private DashType dashType;
 
     private const string horizontalInput = "Horizontal";
     private const string verticalInput = "Vertical";
@@ -56,6 +57,10 @@ public class SubMover : MonoBehaviour
     private float horizontal;
     private float vertical;
 
+    private void Start()
+    {
+        _originalCameraDistance = CameraDistanceFromPlayer.Value;
+    }
 
     private void Update()
     {
@@ -132,15 +137,22 @@ public class SubMover : MonoBehaviour
         Vector3 newPos = position + movement;
         Vector3 targetPos = new Vector3(newPos.x, transform.position.y, newPos.z);
 
+
+
         if (!CanDash())
         {
+            SetCameraDistance(_originalCameraDistance);
             MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed);
         }
         else
         {
+
+            SetCameraDistance(DesiredCameraDistance);
             MovementHelpers.MoveObjectToward(transform, input, targetPos, movementSpeed, rotSpeed, BaseDashMultiplier);
             IncreaseHeat();
         }
+
+
 
     }
 
@@ -203,7 +215,6 @@ public class SubMover : MonoBehaviour
 
     public bool CanDash()
     {
-        dashType = DashType.DASH;
         return Input.GetKey(KeyCode.Space) && HeatLevel < 105 && !Overheated;
     }
 
@@ -244,5 +255,10 @@ public class SubMover : MonoBehaviour
         SubStateManager.currentSubState = GameConstants.PlayerStates.FORCED_DASHING;
         yield return new WaitForSeconds(1);
         SubStateManager.currentSubState = GameConstants.PlayerStates.MOVING;
+    }
+
+    public void SetCameraDistance(float wantedDistance)
+    {
+        CameraDistanceFromPlayer.Value = Mathf.Lerp(CameraDistanceFromPlayer.Value, wantedDistance, 0.1f);
     }
 }

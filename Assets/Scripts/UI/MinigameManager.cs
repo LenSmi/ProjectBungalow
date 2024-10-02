@@ -17,9 +17,15 @@ public class MinigameManager : MonoBehaviour
     public int QuotaDeposit;
 
     [Header("StormValues")]
+    public CustomRenderSettings toxicStormRenderSettings;
+    private CustomRenderSettings baseStormRenderSettings;
     public float TimeUntilStorm;
     public float MaxTimeUntilStorm;
     public float ToxicityDamage;
+    public Color baseStormColour;
+    public Color toxicStormColour;
+    private float originalDensity;
+    public float baseStormDensity;
 
     public Action AddToDepositQuota;
     public Action QuotaReached;
@@ -51,6 +57,8 @@ public class MinigameManager : MonoBehaviour
         CurrentQuota = StartingQuota;
         AddedQuota = 0;
         QuotaDeposit = 0;
+
+        baseStormRenderSettings = RenderSettingHelper.GetRenderSettings();
 
     }
 
@@ -137,7 +145,34 @@ public class MinigameManager : MonoBehaviour
     IEnumerator StartStorm()
     {
         StormStarted?.Invoke();
+        StartCoroutine(
+            SetStormEffects(toxicStormRenderSettings.fogEndDistance, toxicStormRenderSettings.fogSettingLerpSpeed)
+            ); 
         IsStormCoroutineRunning = true;
         yield break;
     }
+
+    private IEnumerator SetStormEffects(float targetFogEndDistance, float duration)
+    {
+        float initialFogEndDistance = RenderSettings.fogEndDistance;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            toxicStormRenderSettings.fogEndDistance = Mathf.Lerp(RenderSettings.fogEndDistance, targetFogEndDistance, t);
+            RenderSettingHelper.SetRenderSettings(toxicStormRenderSettings);
+            yield return null;
+        }
+
+        RenderSettingHelper.SetRenderSettings(toxicStormRenderSettings);
+    }
+
+    private void OnDisable()
+    {
+        RenderSettingHelper.SetRenderSettings(baseStormRenderSettings);
+    }
+
+
 }

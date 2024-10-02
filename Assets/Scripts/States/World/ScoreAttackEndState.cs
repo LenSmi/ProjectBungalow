@@ -14,7 +14,7 @@ public class ScoreAttackEndState : GameState
     {
         var sceneChangeManager = GameManager.Instance().SceneChangeManager();
         Cursor.visible = true;
-        StartCoroutine(sceneChangeManager.IELoadGameScene(GameScenes.Scene_Score_Attack_ScoreScreen));
+        sceneChangeManager.LoadGameScene(GameScenes.Scene_Score_Attack_ScoreScreen);
     }
 
     public override void ExitGamestate()

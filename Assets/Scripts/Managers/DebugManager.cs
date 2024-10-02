@@ -18,10 +18,11 @@ public class DebugManager : MonoBehaviour
 
     private void OnGUI()
     {
+#if UNITY_EDITOR
         GUI.Label(new Rect(0, 0, 200, 200),(1.0f / Time.smoothDeltaTime).ToString("F1"), CustomStyle);
         //GUI.Label(new Rect(0, 30, 200, 200), mouseController.lastLayerhit, customStyle);
         GUI.Label(new Rect(0, 60, 200, 200), SubStateManager.currentSubState.ToString(), CustomStyle);
-
+#endif
     }
 
 

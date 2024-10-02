@@ -4,37 +4,37 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform _playerTarget;
-    [SerializeField]
-    private Vector3 _offset;
-    [SerializeField]
-    private float _lerpTime;
-    [SerializeField]
-    private float _forwardOffset;
+    [SerializeField] private Transform _playerTarget;
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private float _lerpTime;
+    [SerializeField] private float _forwardOffset;
 
     [Header("Orbit Camera Settings")]
     public bool IsOrbiting = false;
-    public float distanceFromPlayer;
-    [SerializeField]
-    private float maxPitchAngle = 80f;
-    [SerializeField]
-    private float minPitchAngle = -10f;
+    public FloatReference distanceFromPlayer;
+    private float _originalDistanceFromPlayerValue;
+    [SerializeField] private float maxPitchAngle = 80f;
+    [SerializeField] private float minPitchAngle = -10f;
     public float rotationSpeed;
     private float pitch;
     private float yaw;
 
-
-
     private void Start()
     {
-        distanceFromPlayer = _offset.magnitude;
+
+        if (!distanceFromPlayer.UseConstant)
+        {
+            _originalDistanceFromPlayerValue = distanceFromPlayer.Value;
+        }
+        else
+        {
+            _originalDistanceFromPlayerValue = distanceFromPlayer.ConstantValue;
+        }
     }
 
     private void FixedUpdate()
     {
-        
-
+       
         if (IsOrbiting)
         {
             RotateCameraAroundPlayer();
@@ -75,12 +75,25 @@ public class CameraController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
 
         // Calculate the new camera position based on the rotation and the desired distance from the player
-        Vector3 direction = rotation * new Vector3(0, 0, -distanceFromPlayer);
+        Vector3 direction = rotation * new Vector3(0, 0, -distanceFromPlayer.Value);
 
         // Update the camera's position relative to the player
         transform.position = _playerTarget.position + direction;
 
         // Make the camera look at the player's position
         transform.LookAt(_playerTarget.position);
+    }
+
+    private void OnDisable()
+    {
+        if (!distanceFromPlayer.UseConstant)
+        {
+            distanceFromPlayer.Value = _originalDistanceFromPlayerValue;
+        }
+        else
+        {
+            distanceFromPlayer.ConstantValue = _originalDistanceFromPlayerValue;
+        }
+
     }
 }

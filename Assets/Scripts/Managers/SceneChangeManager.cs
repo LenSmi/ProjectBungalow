@@ -9,6 +9,7 @@ public enum GameScenes
 {
     //These need to have the same name as the scene file
     Scene_God,
+    Scene_Main_Menu,
     Scene_Hub,
     Scene_TrenchArea1,
     Scene_Score_Attack_Saloon,
@@ -48,7 +49,12 @@ public class SceneChangeManager : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 
-    public IEnumerator IELoadGameScene(GameScenes sceneToLoad)
+    public void LoadGameScene(GameScenes scene)
+    {
+        StartCoroutine(IELoadGameScene(scene));
+    }
+
+    private IEnumerator IELoadGameScene(GameScenes sceneToLoad)
     {
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(GameScenes.Scene_God.ToString()))
         {

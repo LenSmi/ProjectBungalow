@@ -10,7 +10,7 @@ public class HubState : GameState
     }
     public override void EnterGamestate()
     {
-        StartCoroutine(GameManager.Instance().SceneChangeManager().IELoadGameScene(GameScenes.Scene_Hub));
+        GameManager.Instance().SceneChangeManager().LoadGameScene(GameScenes.Scene_Hub);
     }
 
     public override void ExitGamestate()
